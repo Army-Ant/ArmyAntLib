@@ -1,0 +1,13 @@
+{
+    "files.autoSave": "afterDelay",
+    "files.trimTrailingWhitespace": true, // 保存时，删除每一行末尾的空格
+    "editor.dragAndDrop": false, // 选中文字后，可以拖动它们调整位置。我是不需要
+    "files.defaultLanguage": "cpp", // ctrl+N新建文件后默认的语言
+    "editor.formatOnType": true, // 输入时就进行格式化，默认触发字符较少，分号可以触发
+    "editor.snippetSuggestions": "top", // snippets代码优先显示补全
+    "C_Cpp.clang_format_sortIncludes": true, // 格式化时调整include的顺序（按字母排序）
+    "C_Cpp.intelliSenseEngine": "Default", // 可以为Default或Tag Parser，后者较老，功能较简单。具体差别参考cpptools扩展文档
+    "C_Cpp.errorSquiggles": "Enabled", // 因为有clang的lint，所以关掉
+    "C_Cpp.autocomplete": "Default", // 因为有clang的补全，所以关掉
+    "cmake.configureOnOpen": true // 效果效果比cpptools要好
+}

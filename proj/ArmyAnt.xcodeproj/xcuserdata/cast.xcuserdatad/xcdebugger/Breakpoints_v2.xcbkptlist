@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bucket
+   type = "1"
+   version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../src/data/AAJson.cpp"
+            timestampString = "516615622.847599"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "38"
+            endingLineNumber = "38">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../inc/AAClassPrivateHandle.hpp"
+            timestampString = "516678050.353711"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "72"
+            endingLineNumber = "72"
+            landmarkName = "GetHandle(T_Out* src, T_In* newObject)"
+            landmarkType = "9">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ArmyAnt::ClassPrivateHandleManager&lt;ArmyAnt::IStream, ArmyAnt::IStream_Private&gt;::GetHandle(ArmyAnt::IStream*, ArmyAnt::IStream_Private*)"
+                  moduleName = "libArmyAntLib_mac.dylib"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/cast/git/ArmyAnt/ArmyAntLib/src/io/../../inc/AAClassPrivateHandle.hpp"
+                  timestampString = "516678054.744196"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "72"
+                  endingLineNumber = "72"
+                  offsetFromSymbolStart = "545">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ArmyAnt::ClassPrivateHandleManager&lt;ArmyAnt::Socket, ArmyAnt::Socket_Private&gt;::GetHandle(ArmyAnt::Socket*, ArmyAnt::Socket_Private*)"
+                  moduleName = "libArmyAntLib_mac.dylib"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/cast/git/ArmyAnt/ArmyAntLib/src/io/../../inc/AAClassPrivateHandle.hpp"
+                  timestampString = "516678054.748313"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "72"
+                  endingLineNumber = "72"
+                  offsetFromSymbolStart = "545">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ArmyAnt::ClassPrivateHandleManager&lt;ArmyAnt::JsonObject, ArmyAnt::JO_Private&gt;::GetHandle(ArmyAnt::JsonObject*, ArmyAnt::JO_Private*)"
+                  moduleName = "libArmyAntLib_mac.dylib"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/cast/git/ArmyAnt/ArmyAntLib/src/data/../../inc/AAClassPrivateHandle.hpp"
+                  timestampString = "516678054.751441"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "72"
+                  endingLineNumber = "72"
+                  offsetFromSymbolStart = "545">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ArmyAnt::ClassPrivateHandleManager&lt;ArmyAnt::BinaryParser, ArmyAnt::BinaryParser_Private&gt;::GetHandle(ArmyAnt::BinaryParser*, ArmyAnt::BinaryParser_Private*)"
+                  moduleName = "libArmyAntLib_mac.dylib"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/cast/git/ArmyAnt/ArmyAntLib/src/data/../../inc/AAClassPrivateHandle.hpp"
+                  timestampString = "516678054.75674"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "72"
+                  endingLineNumber = "72"
+                  offsetFromSymbolStart = "545">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ArmyAnt::ClassPrivateHandleManager&lt;ArmyAnt::AES::ByteEncoder, ArmyAnt::AES::ByteEncoder_Private_Ref&gt;::GetHandle(ArmyAnt::AES::ByteEncoder*, ArmyAnt::AES::ByteEncoder_Private_Ref*)"
+                  moduleName = "libArmyAntLib_mac.dylib"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/cast/git/ArmyAnt/ArmyAntLib/src/data/../../inc/AAClassPrivateHandle.hpp"
+                  timestampString = "516678054.760146"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "72"
+                  endingLineNumber = "72"
+                  offsetFromSymbolStart = "545">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ArmyAnt::ClassPrivateHandleManager&lt;ArmyAnt::AES::RoundSetting, ArmyAnt::AES::RoundSetting_Private_Ref&gt;::GetHandle(ArmyAnt::AES::RoundSetting*, ArmyAnt::AES::RoundSetting_Private_Ref*)"
+                  moduleName = "libArmyAntLib_mac.dylib"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/cast/git/ArmyAnt/ArmyAntLib/src/data/../../inc/AAClassPrivateHandle.hpp"
+                  timestampString = "516678054.765646"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "72"
+                  endingLineNumber = "72"
+                  offsetFromSymbolStart = "545">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ArmyAnt::ClassPrivateHandleManager&lt;ArmyAnt::AES::Parser, ArmyAnt::AES::Parser_Private_Ref&gt;::GetHandle(ArmyAnt::AES::Parser*, ArmyAnt::AES::Parser_Private_Ref*)"
+                  moduleName = "libArmyAntLib_mac.dylib"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/cast/git/ArmyAnt/ArmyAntLib/src/data/../../inc/AAClassPrivateHandle.hpp"
+                  timestampString = "516678054.772491"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "72"
+                  endingLineNumber = "72"
+                  offsetFromSymbolStart = "545">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ArmyAnt::ClassPrivateHandleManager&lt;ArmyAnt::String, std::__1::basic_string&lt;char, std::__1::char_traits&lt;char&gt;, std::__1::allocator&lt;char&gt; &gt; &gt;::GetHandle(ArmyAnt::String*, std::__1::basic_string&lt;char, std::__1::char_traits&lt;char&gt;, std::__1::allocator&lt;char&gt; &gt;*)"
+                  moduleName = "libArmyAntLib_mac.dylib"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/cast/git/ArmyAnt/ArmyAntLib/src/tool/../../inc/AAClassPrivateHandle.hpp"
+                  timestampString = "516678054.775327"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "72"
+                  endingLineNumber = "72"
+                  offsetFromSymbolStart = "545">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../test/main.cpp"
+            timestampString = "516680461.904059"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "30"
+            endingLineNumber = "30">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../src/tool/AAString.cpp"
+            timestampString = "516680572.229492"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "41"
+            endingLineNumber = "41"
+            landmarkName = "String::String(const char * value)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../src/tool/AAString.cpp"
+            timestampString = "516680619.363966"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "37"
+            endingLineNumber = "37">
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
+</Bucket>

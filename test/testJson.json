@@ -1,0 +1,1013 @@
+[
+  {
+    "avatarId": 1,
+    "avatarName": "player",
+    "avatarStates": {
+      "default": {
+        "stateType": true,
+        "stateImageList": [
+          {
+            "imageName": "BluePlayer",
+            "left": 0,
+            "top": 0,
+            "width": 32,
+            "height": 32
+          }
+        ]
+      },
+      "up": {
+        "stateType": false,
+        "stateImageList": [
+          {
+            "imageName": "BluePlayer",
+            "left": 0,
+            "top": 99,
+            "width": 32,
+            "height": 32
+          },
+          {
+            "imageName": "BluePlayer",
+            "left": 32,
+            "top": 99,
+            "width": 32,
+            "height": 32
+          },
+          {
+            "imageName": "BluePlayer",
+            "left": 64,
+            "top": 99,
+            "width": 32,
+            "height": 32
+          },
+          {
+            "imageName": "BluePlayer",
+            "left": 96,
+            "top": 99,
+            "width": 32,
+            "height": 32
+          }
+        ]
+      },
+      "down": {
+        "stateType": true,
+        "stateImageList": [
+          {
+            "imageName": "BluePlayer",
+            "left": 0,
+            "top": 0,
+            "width": 32,
+            "height": 32
+          },
+          {
+            "imageName": "BluePlayer",
+            "left": 32,
+            "top": 0,
+            "width": 32,
+            "height": 32
+          },
+          {
+            "imageName": "BluePlayer",
+            "left": 64,
+            "top": 0,
+            "width": 32,
+            "height": 32
+          },
+          {
+            "imageName": "BluePlayer",
+            "left": 96,
+            "top": 0,
+            "width": 32,
+            "height": 32
+          }
+        ]
+      },
+      "left": {
+        "stateType": null,
+        "stateImageList": [
+          {
+            "imageName": "BluePlayer",
+            "left": 0,
+            "top": 32,
+            "width": 32,
+            "height": 32
+          },
+          {
+            "imageName": "BluePlayer",
+            "left": 32,
+            "top": 32,
+            "width": 32,
+            "height": 32
+          },
+          {
+            "imageName": "BluePlayer",
+            "left": 64,
+            "top": 32,
+            "width": 32,
+            "height": 32
+          },
+          {
+            "imageName": "BluePlayer",
+            "left": 96,
+            "top": 32,
+            "width": 32,
+            "height": 32
+          }
+        ]
+      },
+      "right": {
+        "stateType": null,
+        "stateImageList": [
+          {
+            "imageName": "BluePlayer",
+            "left": 0,
+            "top": 66,
+            "width": 32,
+            "height": 32
+          },
+          {
+            "imageName": "BluePlayer",
+            "left": 32,
+            "top": 66,
+            "width": 32,
+            "height": 32
+          },
+          {
+            "imageName": "BluePlayer",
+            "left": 64,
+            "top": 66,
+            "width": 32,
+            "height": 32
+          },
+          {
+            "imageName": "BluePlayer",
+            "left": 96,
+            "top": 66,
+            "width": 32,
+            "height": 32
+          }
+        ]
+      }
+    }
+  },
+  {
+    "avatarId": 2,
+    "avatarName": "",
+    "avatarStates": {
+      "default": {
+        "stateType": "recycle",
+        "stateImageList": [
+          {
+            "imageName": "BlueWater",
+            "left": 0,
+            "top": 0,
+            "width": 32,
+            "height": 32
+          },
+          {
+            "imageName": "BlueWater",
+            "left": 32,
+            "top": 0,
+            "width": 32,
+            "height": 32
+          },
+          {
+            "imageName": "BlueWater",
+            "left": 64,
+            "top": 0,
+            "width": 32,
+            "height": 32
+          },
+          {
+            "imageName": "BlueWater",
+            "left": 96,
+            "top": 0,
+            "width": 32,
+            "height": 32
+          }
+        ]
+      }
+    }
+  },
+  {
+    "avatarId": 3,
+    "avatarName": NaN,
+    "avatarStates": {
+      "default": {
+        "stateType": "static",
+        "stateImageList": [
+          {
+            "imageName": "WhiteWall",
+            "left": 0,
+            "top": 0,
+            "width": 32,
+            "height": 32
+          }
+        ]
+      }
+    }
+  },
+  {
+    "avatarId": 4,
+    "avatarName": infinity,
+    "avatarStates": {
+      "default": {
+        "stateType": "static",
+        "stateImageList": [
+          {
+            "imageName": "YellowWall",
+            "left": 0,
+            "top": 0,
+            "width": 32,
+            "height": 32
+          }
+        ]
+      }
+    }
+  },
+  {
+    "avatarId": 5,
+    "avatarName": undefined,
+    "avatarStates": {
+      "default": {
+        "stateType": "static",
+        "stateImageList": [
+          {
+            "imageName": "NormalDoors",
+            "left": 0,
+            "top": 0,
+            "width": 32,
+            "height": 32
+          }
+        ]
+      },
+      "open": {
+        "stateType": "once",
+        "stateImageList": [
+          {
+            "imageName": "NormalDoors",
+            "left": 0,
+            "top": 0,
+            "width": 32,
+            "height": 32
+          },
+          {
+            "imageName": "NormalDoors",
+            "left": 0,
+            "top": 32,
+            "width": 32,
+            "height": 32
+          },
+          {
+            "imageName": "NormalDoors",
+            "left": 0,
+            "top": 64,
+            "width": 32,
+            "height": 32
+          },
+          {
+            "imageName": "NormalDoors",
+            "left": 0,
+            "top": 96,
+            "width": 32,
+            "height": 32
+          }
+        ]
+      }
+    }
+  },
+  {
+    "avatarId": 6,
+    "avatarName": "blueDoor",
+    "avatarStates": {
+      "default": {
+        "stateType": "static",
+        "stateImageList": [
+          {
+            "imageName": "NormalDoors",
+            "left": 32,
+            "top": 0,
+            "width": 32,
+            "height": 32
+          }
+        ]
+      },
+      "open": {
+        "stateType": "once",
+        "stateImageList": [
+          {
+            "imageName": "NormalDoors",
+            "left": 32,
+            "top": 0,
+            "width": 32,
+            "height": 32
+          },
+          {
+            "imageName": "NormalDoors",
+            "left": 32,
+            "top": 32,
+            "width": 32,
+            "height": 32
+          },
+          {
+            "imageName": "NormalDoors",
+            "left": 32,
+            "top": 64,
+            "width": 32,
+            "height": 32
+          },
+          {
+            "imageName": "NormalDoors",
+            "left": 32,
+            "top": 96,
+            "width": 32,
+            "height": 32
+          }
+        ]
+      }
+    }
+  },
+  {
+    "avatarId": 7,
+    "avatarName": "redDoor",
+    "avatarStates": {
+      "default": {
+        "stateType": "static",
+        "stateImageList": [
+          {
+            "imageName": "NormalDoors",
+            "left": 64,
+            "top": 0,
+            "width": 32,
+            "height": 32
+          }
+        ]
+      },
+      "open": {
+        "stateType": "once",
+        "stateImageList": [
+          {
+            "imageName": "NormalDoors",
+            "left": 64,
+            "top": 0,
+            "width": 32,
+            "height": 32
+          },
+          {
+            "imageName": "NormalDoors",
+            "left": 64,
+            "top": 32,
+            "width": 32,
+            "height": 32
+          },
+          {
+            "imageName": "NormalDoors",
+            "left": 64,
+            "top": 64,
+            "width": 32,
+            "height": 32
+          },
+          {
+            "imageName": "NormalDoors",
+            "left": 64,
+            "top": 96,
+            "width": 32,
+            "height": 32
+          }
+        ]
+      }
+    }
+  },
+  {
+    "avatarId": 8,
+    "avatarName": "greenSlame",
+    "avatarStates": {
+      "default": {
+        "stateType": "recycle",
+        "stateImageList": [
+          {
+            "imageName": "Slames",
+            "left": 0,
+            "top": 0,
+            "width": 32,
+            "height": 32
+          },
+          {
+            "imageName": "Slames",
+            "left": 32,
+            "top": 0,
+            "width": 32,
+            "height": 32
+          },
+          {
+            "imageName": "Slames",
+            "left": 64,
+            "top": 0,
+            "width": 32,
+            "height": 32
+          },
+          {
+            "imageName": "Slames",
+            "left": 96,
+            "top": 0,
+            "width": 32,
+            "height": 32
+          }
+        ]
+      }
+    }
+  },
+  {
+    "avatarId": 9,
+    "avatarName": "redSlame",
+    "avatarStates": {
+      "default": {
+        "stateType": "recycle",
+        "stateImageList": [
+          {
+            "imageName": "Slames",
+            "left": 0,
+            "top": 32,
+            "width": 32,
+            "height": 32
+          },
+          {
+            "imageName": "Slames",
+            "left": 32,
+            "top": 32,
+            "width": 32,
+            "height": 32
+          },
+          {
+            "imageName": "Slames",
+            "left": 64,
+            "top": 32,
+            "width": 32,
+            "height": 32
+          },
+          {
+            "imageName": "Slames",
+            "left": 96,
+            "top": 32,
+            "width": 32,
+            "height": 32
+          }
+        ]
+      }
+    }
+  },
+  {
+    "avatarId": 10,
+    "avatarName": "blackSlame",
+    "avatarStates": {
+      "default": {
+        "stateType": "recycle",
+        "stateImageList": [
+          {
+            "imageName": "Slames",
+            "left": 0,
+            "top": 64,
+            "width": 32,
+            "height": 32
+          },
+          {
+            "imageName": "Slames",
+            "left": 32,
+            "top": 64,
+            "width": 32,
+            "height": 32
+          },
+          {
+            "imageName": "Slames",
+            "left": 64,
+            "top": 64,
+            "width": 32,
+            "height": 32
+          },
+          {
+            "imageName": "Slames",
+            "left": 96,
+            "top": 64,
+            "width": 32,
+            "height": 32
+          }
+        ]
+      }
+    }
+  },
+  {
+    "avatarId": 11,
+    "avatarName": "kingSlame",
+    "avatarStates": {
+      "default": {
+        "stateType": "recycle",
+        "stateImageList": [
+          {
+            "imageName": "Slames",
+            "left": 0,
+            "top": 96,
+            "width": 32,
+            "height": 32
+          },
+          {
+            "imageName": "Slames",
+            "left": 32,
+            "top": 96,
+            "width": 32,
+            "height": 32
+          },
+          {
+            "imageName": "Slames",
+            "left": 64,
+            "top": 96,
+            "width": 32,
+            "height": 32
+          },
+          {
+            "imageName": "Slames",
+            "left": 96,
+            "top": 96,
+            "width": 32,
+            "height": 32
+          }
+        ]
+      }
+    }
+  },
+  {
+    "avatarId": 12,
+    "avatarName": "skull",
+    "avatarStates": {
+      "default": {
+        "stateType": "recycle",
+        "stateImageList": [
+          {
+            "imageName": "Skulls",
+            "left": 0,
+            "top": 0,
+            "width": 32,
+            "height": 32
+          },
+          {
+            "imageName": "Skulls",
+            "left": 32,
+            "top": 0,
+            "width": 32,
+            "height": 32
+          },
+          {
+            "imageName": "Skulls",
+            "left": 64,
+            "top": 0,
+            "width": 32,
+            "height": 32
+          },
+          {
+            "imageName": "Skulls",
+            "left": 96,
+            "top": 0,
+            "width": 32,
+            "height": 32
+          }
+        ]
+      }
+    }
+  },
+  {
+    "avatarId": 13,
+    "avatarName": "superSkull",
+    "avatarStates": {
+      "default": {
+        "stateType": "recycle",
+        "stateImageList": [
+          {
+            "imageName": "Skulls",
+            "left": 0,
+            "top": 32,
+            "width": 32,
+            "height": 32
+          },
+          {
+            "imageName": "Skulls",
+            "left": 32,
+            "top": 32,
+            "width": 32,
+            "height": 32
+          },
+          {
+            "imageName": "Skulls",
+            "left": 64,
+            "top": 32,
+            "width": 32,
+            "height": 32
+          },
+          {
+            "imageName": "Skulls",
+            "left": 96,
+            "top": 32,
+            "width": 32,
+            "height": 32
+          }
+        ]
+      }
+    }
+  },
+  {
+    "avatarId": 14,
+    "avatarName": "yellowSkull",
+    "avatarStates": {
+      "default": {
+        "stateType": "recycle",
+        "stateImageList": [
+          {
+            "imageName": "Skulls",
+            "left": 0,
+            "top": 64,
+            "width": 32,
+            "height": 32
+          },
+          {
+            "imageName": "Skulls",
+            "left": 32,
+            "top": 64,
+            "width": 32,
+            "height": 32
+          },
+          {
+            "imageName": "Skulls",
+            "left": 64,
+            "top": 64,
+            "width": 32,
+            "height": 32
+          },
+          {
+            "imageName": "Skulls",
+            "left": 96,
+            "top": 64,
+            "width": 32,
+            "height": 32
+          }
+        ]
+      }
+    }
+  },
+  {
+    "avatarId": 15,
+    "avatarName": "kingSkull",
+    "avatarStates": {
+      "default": {
+        "stateType": "recycle",
+        "stateImageList": [
+          {
+            "imageName": "Skulls",
+            "left": 0,
+            "top": 96,
+            "width": 32,
+            "height": 32
+          },
+          {
+            "imageName": "Skulls",
+            "left": 32,
+            "top": 96,
+            "width": 32,
+            "height": 32
+          },
+          {
+            "imageName": "Skulls",
+            "left": 64,
+            "top": 96,
+            "width": 32,
+            "height": 32
+          },
+          {
+            "imageName": "Skulls",
+            "left": 96,
+            "top": 96,
+            "width": 32,
+            "height": 32
+          }
+        ]
+      }
+    }
+  },
+  {
+    "avatarId": 16,
+    "avatarName": "redDiamond",
+    "avatarStates": {
+      "default": {
+        "stateType": "static",
+        "stateImageList": [
+          {
+            "imageName": "Diamonds",
+            "left": 0,
+            "top": 0,
+            "width": 32,
+            "height": 32
+          }
+        ]
+      }
+    }
+  },
+  {
+    "avatarId": 17,
+    "avatarName": "blueDiamond",
+    "avatarStates": {
+      "default": {
+        "stateType": "static",
+        "stateImageList": [
+          {
+            "imageName": "Diamonds",
+            "left": 32,
+            "top": 0,
+            "width": 32,
+            "height": 32
+          }
+        ]
+      }
+    }
+  },
+  {
+    "avatarId": 18,
+    "avatarName": "greenDiamond",
+    "avatarStates": {
+      "default": {
+        "stateType": "static",
+        "stateImageList": [
+          {
+            "imageName": "Diamonds",
+            "left": 64,
+            "top": 0,
+            "width": 32,
+            "height": 32
+          }
+        ]
+      }
+    }
+  },
+  {
+    "avatarId": 19,
+    "avatarName": "yellowDiamond",
+    "avatarStates": {
+      "default": {
+        "stateType": "static",
+        "stateImageList": [
+          {
+            "imageName": "Diamonds",
+            "left": 96,
+            "top": 0,
+            "width": 32,
+            "height": 32
+          }
+        ]
+      }
+    }
+  },
+  {
+    "avatarId": 20,
+    "avatarName": "princess",
+    "avatarStates": {
+      "default": {
+        "stateType": "recycle",
+        "stateImageList": [
+          {
+            "imageName": "mainNPCs",
+            "left": 0,
+            "top": 96,
+            "width": 32,
+            "height": 32
+          },
+          {
+            "imageName": "mainNPCs",
+            "left": 32,
+            "top": 96,
+            "width": 32,
+            "height": 32
+          },
+          {
+            "imageName": "mainNPCs",
+            "left": 64,
+            "top": 96,
+            "width": 32,
+            "height": 32
+          },
+          {
+            "imageName": "mainNPCs",
+            "left": 96,
+            "top": 96,
+            "width": 32,
+            "height": 32
+          }
+        ]
+      }
+    }
+  },
+  {
+    "avatarId": 21,
+    "avatarName": "oldman",
+    "avatarStates": {
+      "default": {
+        "stateType": "recycle",
+        "stateImageList": [
+          {
+            "imageName": "normalNPCs",
+            "left": 0,
+            "top": 0,
+            "width": 32,
+            "height": 32
+          },
+          {
+            "imageName": "normalNPCs",
+            "left": 32,
+            "top": 0,
+            "width": 32,
+            "height": 32
+          },
+          {
+            "imageName": "normalNPCs",
+            "left": 64,
+            "top": 0,
+            "width": 32,
+            "height": 32
+          },
+          {
+            "imageName": "normalNPCs",
+            "left": 96,
+            "top": 0,
+            "width": 32,
+            "height": 32
+          }
+        ]
+      }
+    }
+  },
+  {
+    "avatarId": 22,
+    "avatarName": "salesman",
+    "avatarStates": {
+      "default": {
+        "stateType": "recycle",
+        "stateImageList": [
+          {
+            "imageName": "normalNPCs",
+            "left": 0,
+            "top": 32,
+            "width": 32,
+            "height": 32
+          },
+          {
+            "imageName": "normalNPCs",
+            "left": 32,
+            "top": 32,
+            "width": 32,
+            "height": 32
+          },
+          {
+            "imageName": "normalNPCs",
+            "left": 64,
+            "top": 32,
+            "width": 32,
+            "height": 32
+          },
+          {
+            "imageName": "normalNPCs",
+            "left": 96,
+            "top": 32,
+            "width": 32,
+            "height": 32
+          }
+        ]
+      }
+    }
+  },
+  {
+    "avatarId": 23,
+    "avatarName": "keyman",
+    "avatarStates": {
+      "default": {
+        "stateType": "recycle",
+        "stateImageList": [
+          {
+            "imageName": "normalNPCs",
+            "left": 0,
+            "top": 64,
+            "width": 32,
+            "height": 32
+          },
+          {
+            "imageName": "normalNPCs",
+            "left": 32,
+            "top": 64,
+            "width": 32,
+            "height": 32
+          },
+          {
+            "imageName": "normalNPCs",
+            "left": 64,
+            "top": 64,
+            "width": 32,
+            "height": 32
+          },
+          {
+            "imageName": "normalNPCs",
+            "left": 96,
+            "top": 64,
+            "width": 32,
+            "height": 32
+          }
+        ]
+      }
+    }
+  },
+  {
+    "avatarId": 24,
+    "avatarName": "spirit",
+    "avatarStates": {
+      "default": {
+        "stateType": "recycle",
+        "stateImageList": [
+          {
+            "imageName": "normalNPCs",
+            "left": 0,
+            "top": 96,
+            "width": 32,
+            "height": 32
+          },
+          {
+            "imageName": "normalNPCs",
+            "left": 32,
+            "top": 96,
+            "width": 32,
+            "height": 32
+          },
+          {
+            "imageName": "normalNPCs",
+            "left": 64,
+            "top": 96,
+            "width": 32,
+            "height": 32
+          },
+          {
+            "imageName": "normalNPCs",
+            "left": 96,
+            "top": 96,
+            "width": 32,
+            "height": 32
+          }
+        ]
+      }
+    }
+  },
+  {
+    "avatarId": 25,
+    "avatarName": "yellowKey",
+    "avatarStates": {
+      "default": {
+        "stateType": "static",
+        "stateImageList": [
+          {
+            "imageName": "YellowKey",
+            "left": 0,
+            "top": 0,
+            "width": 32,
+            "height": 32
+          }
+        ]
+      }
+    }
+  },
+  {
+    "avatarId": 26,
+    "avatarName": "blueKey",
+    "avatarStates": {
+      "default": {
+        "stateType": "static",
+        "stateImageList": [
+          {
+            "imageName": "BlueKey",
+            "left": 0,
+            "top": 0,
+            "width": 32,
+            "height": 32
+          }
+        ]
+      }
+    }
+  },
+  {
+    "avatarId": 27,
+    "avatarName": "redKey",
+    "avatarStates": {
+      "default": {
+        "stateType": "static",
+        "stateImageList": [
+          {
+            "imageName": "RedKey",
+            "left": 0,
+            "top": 0,
+            "width": 32,
+            "height": 32
+          }
+        ]
+      }
+    }
+  }
+]

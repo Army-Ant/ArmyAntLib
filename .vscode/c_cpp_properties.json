@@ -1,0 +1,25 @@
+{
+    "configurations": [
+        {
+            "name": "GCC",
+            "intelliSenseMode": "clang-x64",
+            "compilerPath": "usr/bin/gcc",
+            "includePath": [
+                "${workspaceFolder}/inc",
+                "${workspaceFolder}/external/boost"
+            ],
+            "defines": [],
+            "browse": {
+                "path": [
+                    "${workspaceFolder}/inc",
+                    "${workspaceFolder}/external/boost"
+                ],
+                "limitSymbolsToIncludedHeaders": true,
+                "databaseFilename": ""
+            },
+            "cStandard": "c11",
+            "cppStandard": "c++17"
+        }
+    ],
+    "version": 4
+}

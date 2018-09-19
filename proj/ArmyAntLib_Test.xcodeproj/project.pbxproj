@@ -1,0 +1,345 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		966A083E213545DE00EDAE08 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 966A083D213545DE00EDAE08 /* main.cpp */; };
+		C3EBA1591ED53D9400647939 /* libArmyAntLib_mac.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C323BC7C1ED4050B004DF62D /* libArmyAntLib_mac.dylib */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		C33E28321ECAA88200FD7958 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		966A083C213545DE00EDAE08 /* main.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = main.h; path = ../../test/main.h; sourceTree = "<group>"; };
+		966A083D213545DE00EDAE08 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = main.cpp; path = ../../test/main.cpp; sourceTree = "<group>"; };
+		966A08412135462200EDAE08 /* ArmyAntLib_Test.vcxproj.filters */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = ArmyAntLib_Test.vcxproj.filters; path = ../ArmyAntLib_Test.vcxproj.filters; sourceTree = "<group>"; };
+		966A08422135462200EDAE08 /* ArmyAntLib_Test.vcxproj */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = ArmyAntLib_Test.vcxproj; path = ../ArmyAntLib_Test.vcxproj; sourceTree = "<group>"; };
+		C323BC791ED401A4004DF62D /* libArmyAntLib_mac.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libArmyAntLib_mac.dylib; path = "../../../../../../../Users/cast/Library/Developer/Xcode/DerivedData/ArmyAntLib-dgfebhcsldgrpmbsubutllrwhydk/Build/Products/Debug/libArmyAntLib_mac.dylib"; sourceTree = "<group>"; };
+		C323BC7C1ED4050B004DF62D /* libArmyAntLib_mac.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libArmyAntLib_mac.dylib; path = ../DerivedData/ArmyAntLib/Build/Products/Debug/libArmyAntLib_mac.dylib; sourceTree = "<group>"; };
+		C33E28341ECAA88200FD7958 /* ArmyAntLib_Test */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = ArmyAntLib_Test; sourceTree = BUILT_PRODUCTS_DIR; };
+		C39DB5DA1ECADE36002A11E9 /* libArmyAntLib_mac.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libArmyAntLib_mac.dylib; path = ../DerivedData/ArmyAnt/Build/Products/Debug/libArmyAntLib_mac.dylib; sourceTree = "<group>"; };
+		C39DB5DD1ECAE015002A11E9 /* libboost_math_c99f.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libboost_math_c99f.dylib; path = ../../external/boost/stage/lib/libboost_math_c99f.dylib; sourceTree = "<group>"; };
+		C39DB5E41ECAE54F002A11E9 /* libboost_system.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libboost_system.a; path = ../DerivedData/ArmyAnt/Build/Products/Debug/libboost_system.a; sourceTree = "<group>"; };
+		C3EBA1511ED53CF500647939 /* libArmyAnt_64.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libArmyAnt_64.dylib; path = ../../bin/libArmyAnt_64.dylib; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		C33E28311ECAA88200FD7958 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C3EBA1591ED53D9400647939 /* libArmyAntLib_mac.dylib in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		966A083B213545CE00EDAE08 /* source */ = {
+			isa = PBXGroup;
+			children = (
+				966A083D213545DE00EDAE08 /* main.cpp */,
+				966A083C213545DE00EDAE08 /* main.h */,
+			);
+			name = source;
+			sourceTree = "<group>";
+		};
+		966A083F213545F900EDAE08 /* others */ = {
+			isa = PBXGroup;
+			children = (
+				966A08402135460200EDAE08 /* _other_projects */,
+			);
+			name = others;
+			sourceTree = "<group>";
+		};
+		966A08402135460200EDAE08 /* _other_projects */ = {
+			isa = PBXGroup;
+			children = (
+				966A08422135462200EDAE08 /* ArmyAntLib_Test.vcxproj */,
+				966A08412135462200EDAE08 /* ArmyAntLib_Test.vcxproj.filters */,
+			);
+			name = _other_projects;
+			sourceTree = "<group>";
+		};
+		C33E282B1ECAA88100FD7958 = {
+			isa = PBXGroup;
+			children = (
+				966A083F213545F900EDAE08 /* others */,
+				966A083B213545CE00EDAE08 /* source */,
+				C33E28351ECAA88200FD7958 /* Products */,
+				C39DB5D91ECADE35002A11E9 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		C33E28351ECAA88200FD7958 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				C33E28341ECAA88200FD7958 /* ArmyAntLib_Test */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		C39DB5D91ECADE35002A11E9 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				C3EBA1511ED53CF500647939 /* libArmyAnt_64.dylib */,
+				C323BC7C1ED4050B004DF62D /* libArmyAntLib_mac.dylib */,
+				C323BC791ED401A4004DF62D /* libArmyAntLib_mac.dylib */,
+				C39DB5E41ECAE54F002A11E9 /* libboost_system.a */,
+				C39DB5DD1ECAE015002A11E9 /* libboost_math_c99f.dylib */,
+				C39DB5DA1ECADE36002A11E9 /* libArmyAntLib_mac.dylib */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		C33E28331ECAA88200FD7958 /* ArmyAntLib_Test */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C33E283B1ECAA88200FD7958 /* Build configuration list for PBXNativeTarget "ArmyAntLib_Test" */;
+			buildPhases = (
+				C33E28301ECAA88200FD7958 /* Sources */,
+				C33E28311ECAA88200FD7958 /* Frameworks */,
+				C33E28321ECAA88200FD7958 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ArmyAntLib_Test;
+			productName = ArmyAntLib_Test;
+			productReference = C33E28341ECAA88200FD7958 /* ArmyAntLib_Test */;
+			productType = "com.apple.product-type.tool";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		C33E282C1ECAA88100FD7958 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0940;
+				ORGANIZATIONNAME = ArmyAnt;
+				TargetAttributes = {
+					C33E28331ECAA88200FD7958 = {
+						CreatedOnToolsVersion = 8.3.2;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = C33E282F1ECAA88100FD7958 /* Build configuration list for PBXProject "ArmyAntLib_Test" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = C33E282B1ECAA88100FD7958;
+			productRefGroup = C33E28351ECAA88200FD7958 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				C33E28331ECAA88200FD7958 /* ArmyAntLib_Test */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		C33E28301ECAA88200FD7958 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				966A083E213545DE00EDAE08 /* main.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		C33E28391ECAA88200FD7958 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = ArmyAnt;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		C33E283A1ECAA88200FD7958 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = ArmyAnt;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		C33E283C1ECAA88200FD7958 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				DEVELOPMENT_TEAM = "";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"_cplusplus=17",
+					"$(inherited)",
+					OS_MACOS,
+					OS_BSD,
+				);
+				LD_RUNPATH_SEARCH_PATHS = "$(PROJECT_DIR)/../../external/boost/stage/lib";
+				LIBRARY_SEARCH_PATHS = "$(PROJECT_DIR)/../../external/boost/stage/lib";
+				OTHER_LDFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				REEXPORTED_LIBRARY_PATHS = "";
+			};
+			name = Debug;
+		};
+		C33E283D1ECAA88200FD7958 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				DEVELOPMENT_TEAM = "";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"_cplusplus=17",
+					"NDEBUG=1",
+					"$(inherited)",
+					OS_MACOS,
+					OS_BSD,
+				);
+				LD_RUNPATH_SEARCH_PATHS = "$(PROJECT_DIR)/../../external/boost/stage/lib";
+				LIBRARY_SEARCH_PATHS = "$(PROJECT_DIR)/../../external/boost/stage/lib";
+				OTHER_LDFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				REEXPORTED_LIBRARY_PATHS = "";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		C33E282F1ECAA88100FD7958 /* Build configuration list for PBXProject "ArmyAntLib_Test" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C33E28391ECAA88200FD7958 /* Debug */,
+				C33E283A1ECAA88200FD7958 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		C33E283B1ECAA88200FD7958 /* Build configuration list for PBXNativeTarget "ArmyAntLib_Test" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C33E283C1ECAA88200FD7958 /* Debug */,
+				C33E283D1ECAA88200FD7958 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = C33E282C1ECAA88100FD7958 /* Project object */;
+}

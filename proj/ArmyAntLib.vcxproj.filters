@@ -1,0 +1,216 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClInclude Include="..\inc\AA_end.h">
+      <Filter>_base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\inc\AA_start.h">
+      <Filter>_base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\inc\AADefine.h">
+      <Filter>_base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\inc\AAFragment.h">
+      <Filter>_base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\inc\ArmyAnt.h">
+      <Filter>_base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\inc\ArmyAntLib.h">
+      <Filter>_base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\inc\C_AADefine.h">
+      <Filter>_base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\inc\C_ArmyAnt.h">
+      <Filter>_base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\inc\AAAes.h">
+      <Filter>data</Filter>
+    </ClInclude>
+    <ClInclude Include="..\inc\AABinary.h">
+      <Filter>data</Filter>
+    </ClInclude>
+    <ClInclude Include="..\inc\AAIStream.h">
+      <Filter>io</Filter>
+    </ClInclude>
+    <ClInclude Include="..\inc\AAIStream_Com.h">
+      <Filter>io</Filter>
+    </ClInclude>
+    <ClInclude Include="..\inc\AAIStream_File.h">
+      <Filter>io</Filter>
+    </ClInclude>
+    <ClInclude Include="..\inc\AAIStream_Memory.h">
+      <Filter>io</Filter>
+    </ClInclude>
+    <ClInclude Include="..\inc\AAIStream_Pipe.h">
+      <Filter>io</Filter>
+    </ClInclude>
+    <ClInclude Include="..\inc\AASocket.h">
+      <Filter>io</Filter>
+    </ClInclude>
+    <ClInclude Include="..\inc\C_AAStream.h">
+      <Filter>io</Filter>
+    </ClInclude>
+    <ClInclude Include="..\inc\AAConfiguration.h">
+      <Filter>data</Filter>
+    </ClInclude>
+    <ClInclude Include="..\inc\AANeuron.hpp">
+      <Filter>algorithm</Filter>
+    </ClInclude>
+    <ClInclude Include="..\inc\AANeuronNetwork.hpp">
+      <Filter>algorithm</Filter>
+    </ClInclude>
+    <ClInclude Include="..\inc\AAStateMachine.hpp">
+      <Filter>algorithm</Filter>
+    </ClInclude>
+    <ClInclude Include="..\inc\AATree.hpp">
+      <Filter>algorithm</Filter>
+    </ClInclude>
+    <ClInclude Include="..\inc\AATripleMap.hpp">
+      <Filter>algorithm</Filter>
+    </ClInclude>
+    <ClInclude Include="..\inc\C_AANeuron.h">
+      <Filter>algorithm</Filter>
+    </ClInclude>
+    <ClInclude Include="..\inc\AAClassPrivateHandle.hpp">
+      <Filter>tool</Filter>
+    </ClInclude>
+    <ClInclude Include="..\inc\AASocket_ProtocolTypes.txt">
+      <Filter>io</Filter>
+    </ClInclude>
+    <ClInclude Include="..\inc\AADigraph.hpp">
+      <Filter>algorithm</Filter>
+    </ClInclude>
+    <ClInclude Include="..\inc\AAMath.h">
+      <Filter>mathematic</Filter>
+    </ClInclude>
+    <ClInclude Include="..\inc\AAMathStructs.h">
+      <Filter>mathematic</Filter>
+    </ClInclude>
+    <ClInclude Include="..\inc\AAJson.h">
+      <Filter>data</Filter>
+    </ClInclude>
+    <ClInclude Include="..\inc\AAMessageQueue.h">
+      <Filter>tool</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\base\base.hpp">
+      <Filter>_base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\io\AAIStream_Private.hxx">
+      <Filter>io</Filter>
+    </ClInclude>
+    <ClInclude Include="..\inc\AASqlStructs.h">
+      <Filter>algorithm</Filter>
+    </ClInclude>
+    <ClInclude Include="..\inc\AAString.h">
+      <Filter>tool</Filter>
+    </ClInclude>
+    <ClInclude Include="..\inc\AASqlClient.h">
+      <Filter>io</Filter>
+    </ClInclude>
+    <ClInclude Include="..\inc\AALog.h">
+      <Filter>tool</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\src\base\ArmyAntLib.cpp">
+      <Filter>_base</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\algorithm\C_AANeuron.cpp">
+      <Filter>algorithm</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\data\AAAes.cpp">
+      <Filter>data</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\data\AABinary.cpp">
+      <Filter>data</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\data\AAJson.cpp">
+      <Filter>data</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\io\AAIStream.cpp">
+      <Filter>io</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\io\AAIStream_File.cpp">
+      <Filter>io</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\io\AAIStream_Memory.cpp">
+      <Filter>io</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\io\AASocket.cpp">
+      <Filter>io</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\io\C_AAStream.cpp">
+      <Filter>io</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\tool\AAString.cpp">
+      <Filter>tool</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\algorithm\AASqlStructs.cpp">
+      <Filter>algorithm</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\io\AASqlClient.cpp">
+      <Filter>io</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\tool\AALog.cpp">
+      <Filter>tool</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="data">
+      <UniqueIdentifier>{4cb56424-cd27-404a-8ab4-c7e380e6c7d6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="io">
+      <UniqueIdentifier>{34bc343d-638f-4c4d-990a-600fabb050bc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="algorithm">
+      <UniqueIdentifier>{69c9f1cb-ae5d-402e-ac2b-cafd42714e52}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="tool">
+      <UniqueIdentifier>{ff2ae640-545f-4cb4-94c2-664a2b52283d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="_base">
+      <UniqueIdentifier>{8dc39b06-4978-4e74-b93b-8be70a06bba2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="_not_cpp">
+      <UniqueIdentifier>{2a4ad03f-f9df-4be7-a1f8-c52076c4e208}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="mathematic">
+      <UniqueIdentifier>{fa47124e-83a3-490c-91bd-23fca0349641}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="make.sh">
+      <Filter>_not_cpp</Filter>
+    </None>
+    <None Include="..\src\not_cpp\build_end.bat">
+      <Filter>_not_cpp</Filter>
+    </None>
+    <None Include="..\src\not_cpp\build_end.sh">
+      <Filter>_not_cpp</Filter>
+    </None>
+    <None Include="..\src\not_cpp\build_start.bat">
+      <Filter>_not_cpp</Filter>
+    </None>
+    <None Include="..\src\not_cpp\build_start.sh">
+      <Filter>_not_cpp</Filter>
+    </None>
+    <None Include="..\.gitignore">
+      <Filter>_not_cpp</Filter>
+    </None>
+    <None Include="..\make_all.sh">
+      <Filter>_not_cpp</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="..\CMakeLists.txt">
+      <Filter>_not_cpp</Filter>
+    </Text>
+  </ItemGroup>
+  <ItemGroup>
+    <Natvis Include="..\src\not_cpp\ArmyAntNatvisFile.natvis">
+      <Filter>_not_cpp</Filter>
+    </Natvis>
+  </ItemGroup>
+</Project>

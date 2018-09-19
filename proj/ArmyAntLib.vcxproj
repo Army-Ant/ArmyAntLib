@@ -1,0 +1,709 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug_Static|ARM">
+      <Configuration>Debug_Static</Configuration>
+      <Platform>ARM</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug_Static|Win32">
+      <Configuration>Debug_Static</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug_Static|x64">
+      <Configuration>Debug_Static</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|ARM">
+      <Configuration>Debug</Configuration>
+      <Platform>ARM</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release_Static|ARM">
+      <Configuration>Release_Static</Configuration>
+      <Platform>ARM</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release_Static|Win32">
+      <Configuration>Release_Static</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release_Static|x64">
+      <Configuration>Release_Static</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|ARM">
+      <Configuration>Release</Configuration>
+      <Platform>ARM</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{14FA4233-0D4C-46B8-82F1-44262938B95A}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>ArmyAntLib</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0.16299.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug_Static|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug_Static|ARM'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug_Static|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration" Condition="'$(Configuration)|$(Platform)'=='Release_Static|Win32'">
+    <PlatformToolset>v141</PlatformToolset>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release_Static|ARM'" Label="Configuration">
+    <PlatformToolset>v141</PlatformToolset>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration" Condition="'$(Configuration)|$(Platform)'=='Release_Static|x64'">
+    <PlatformToolset>v141</PlatformToolset>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug_Static|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug_Static|ARM'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug_Static|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+    <OutDir>$(ProjectDir)..\bin\</OutDir>
+    <IntDir>$(ProjectDir)\$(ProjectName)$(Configuration)\</IntDir>
+    <TargetName>$(ProjectName)_d</TargetName>
+    <IncludePath>$(ProjectDir)..\external\boost;$(IncludePath)</IncludePath>
+    <LibraryPath>$(ProjectDir)..\external\boost\stage\lib;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">
+    <TargetName>$(ProjectName)_d_arm</TargetName>
+    <IncludePath>$(ProjectDir)..\external\boost;$(IncludePath)</IncludePath>
+    <LibraryPath>$(ProjectDir)..\external\boost\stage\lib;$(LibraryPath)</LibraryPath>
+    <LinkIncremental>true</LinkIncremental>
+    <OutDir>$(ProjectDir)..\bin\</OutDir>
+    <IntDir>$(ProjectDir)\$(ProjectName)$(Configuration)\</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug_Static|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+    <OutDir>$(ProjectDir)..\bin\</OutDir>
+    <IntDir>$(ProjectDir)\$(ProjectName)$(Configuration)\</IntDir>
+    <TargetExt>.lib</TargetExt>
+    <TargetName>$(ProjectName)_s_d</TargetName>
+    <IncludePath>$(ProjectDir)..\external\boost;$(IncludePath)</IncludePath>
+    <LibraryPath>$(ProjectDir)..\external\boost\stage\lib;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug_Static|ARM'">
+    <TargetExt>.lib</TargetExt>
+    <TargetName>$(ProjectName)_s_d_arm</TargetName>
+    <IncludePath>$(ProjectDir)..\external\boost;$(IncludePath)</IncludePath>
+    <LibraryPath>$(ProjectDir)..\external\boost\stage\lib;$(LibraryPath)</LibraryPath>
+    <LinkIncremental>true</LinkIncremental>
+    <OutDir>$(ProjectDir)..\bin\</OutDir>
+    <IntDir>$(ProjectDir)\$(ProjectName)$(Configuration)\</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <LinkIncremental>true</LinkIncremental>
+    <OutDir>$(ProjectDir)..\bin\</OutDir>
+    <IntDir>$(ProjectDir)\$(ProjectName)$(Configuration)\</IntDir>
+    <TargetName>$(ProjectName)_d_64</TargetName>
+    <IncludePath>$(ProjectDir)..\external\boost;$(IncludePath)</IncludePath>
+    <LibraryPath>$(ProjectDir)..\external\boost\stage\lib64;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug_Static|x64'">
+    <LinkIncremental>true</LinkIncremental>
+    <OutDir>$(ProjectDir)..\bin\</OutDir>
+    <IntDir>$(ProjectDir)\$(ProjectName)$(Configuration)\</IntDir>
+    <TargetExt>.lib</TargetExt>
+    <TargetName>$(ProjectName)_s_d_64</TargetName>
+    <IncludePath>$(ProjectDir)..\external\boost;$(IncludePath)</IncludePath>
+    <LibraryPath>$(ProjectDir)..\external\boost\stage\lib64;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+    <OutDir>$(ProjectDir)..\bin\</OutDir>
+    <IntDir>$(ProjectDir)\$(ProjectName)$(Configuration)\</IntDir>
+    <IncludePath>$(ProjectDir)..\external\boost;$(IncludePath)</IncludePath>
+    <LibraryPath>$(ProjectDir)..\external\boost\stage\lib;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">
+    <IncludePath>$(ProjectDir)..\external\boost;$(IncludePath)</IncludePath>
+    <LibraryPath>$(ProjectDir)..\external\boost\stage\lib;$(LibraryPath)</LibraryPath>
+    <LinkIncremental>false</LinkIncremental>
+    <TargetName>$(ProjectName)_arm</TargetName>
+    <OutDir>$(ProjectDir)..\bin\</OutDir>
+    <IntDir>$(ProjectDir)\$(ProjectName)$(Configuration)\</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <LinkIncremental>false</LinkIncremental>
+    <OutDir>$(ProjectDir)..\bin\</OutDir>
+    <IntDir>$(ProjectDir)\$(ProjectName)$(Configuration)\</IntDir>
+    <TargetName>$(ProjectName)_64</TargetName>
+    <IncludePath>$(ProjectDir)..\external\boost;$(IncludePath)</IncludePath>
+    <LibraryPath>$(ProjectDir)..\external\boost\stage\lib64;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release_Static|Win32'">
+    <OutDir>$(ProjectDir)..\bin\</OutDir>
+    <IntDir>$(ProjectDir)\$(ProjectName)$(Configuration)\</IntDir>
+    <TargetExt>.lib</TargetExt>
+    <TargetName>$(ProjectName)_s</TargetName>
+    <IncludePath>$(ProjectDir)..\external\boost;$(IncludePath)</IncludePath>
+    <LibraryPath>$(ProjectDir)..\external\boost\stage\lib;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release_Static|ARM'">
+    <TargetExt>.lib</TargetExt>
+    <TargetName>$(ProjectName)_s_arm</TargetName>
+    <IncludePath>$(ProjectDir)..\external\boost;$(IncludePath)</IncludePath>
+    <LibraryPath>$(ProjectDir)..\external\boost\stage\lib;$(LibraryPath)</LibraryPath>
+    <OutDir>$(ProjectDir)..\bin\</OutDir>
+    <IntDir>$(ProjectDir)\$(ProjectName)$(Configuration)\</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release_Static|x64'">
+    <OutDir>$(ProjectDir)..\bin\</OutDir>
+    <IntDir>$(ProjectDir)\$(ProjectName)$(Configuration)\</IntDir>
+    <TargetExt>.lib</TargetExt>
+    <TargetName>$(ProjectName)_s_64</TargetName>
+    <IncludePath>$(ProjectDir)..\external\boost;$(IncludePath)</IncludePath>
+    <LibraryPath>$(ProjectDir)..\external\boost\stage\lib64;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level4</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>_cplusplus;_SCL_SECURE_NO_WARNINGS;_32BIT;_x86;OS_WINDOWS;WIN32;_WIN32;ARMYANTLIB_EXPORTS;_CRT_SECURE_NO_WARNINGS;_DLL;_SHARED;DEBUG;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+    </ClCompile>
+    <Link>
+      <SubSystem>NotSet</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <Version>0.0</Version>
+      <ProgramDatabaseFile>$(ProjectDir)..\bin\$(TargetName).pdb</ProgramDatabaseFile>
+      <ManifestFile>$(ProjectDir)out\$(TargetName)$(TargetExt).intermediate.manifest</ManifestFile>
+    </Link>
+    <BuildLog>
+      <Path>$(ProjectDir)$(MSBuildProjectName).log</Path>
+    </BuildLog>
+    <Xdcmake>
+      <OutputFile>$(ProjectDir)out\$(TargetName).xml</OutputFile>
+    </Xdcmake>
+    <PreBuildEvent>
+      <Command>$(ProjectDir)..\src\not_cpp\build_start.bat $(Configuration) $(ProjectDir)..\ $(TargetName) $(PlatformTarget)</Command>
+      <Message>---------编译前脚本---------------------</Message>
+    </PreBuildEvent>
+    <PostBuildEvent>
+      <Command>$(ProjectDir)..\src\not_cpp\build_end.bat $(Configuration) $(ProjectDir)..\ $(TargetName) $(PlatformTarget)</Command>
+      <Message>---------生成后脚本---------------------</Message>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level4</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>_cplusplus;_SCL_SECURE_NO_WARNINGS;_32BIT;_arm;OS_WINDOWS;WIN32;_WIN32;ARMYANTLIB_EXPORTS;_CRT_SECURE_NO_WARNINGS;_DLL;_SHARED;DEBUG;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <DisableSpecificWarnings>%(DisableSpecificWarnings)</DisableSpecificWarnings>
+    </ClCompile>
+    <Link>
+      <SubSystem>NotSet</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <Version>0.0</Version>
+      <ProgramDatabaseFile>$(ProjectDir)..\bin\$(TargetName).pdb</ProgramDatabaseFile>
+      <ManifestFile>$(ProjectDir)out\$(TargetName)$(TargetExt).intermediate.manifest</ManifestFile>
+    </Link>
+    <BuildLog>
+      <Path>$(ProjectDir)$(MSBuildProjectName).log</Path>
+    </BuildLog>
+    <Xdcmake>
+      <OutputFile>$(ProjectDir)out\$(TargetName).xml</OutputFile>
+    </Xdcmake>
+    <PreBuildEvent>
+      <Command>$(ProjectDir)..\src\not_cpp\build_start.bat $(Configuration) $(ProjectDir)..\ $(TargetName) $(PlatformTarget)</Command>
+      <Message>---------编译前脚本---------------------</Message>
+    </PreBuildEvent>
+    <PostBuildEvent>
+      <Command>$(ProjectDir)..\src\not_cpp\build_end.bat $(Configuration) $(ProjectDir)..\ $(TargetName) $(PlatformTarget)</Command>
+      <Message>---------生成后脚本---------------------</Message>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug_Static|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level4</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>_cplusplus;_SCL_SECURE_NO_WARNINGS;_32BIT;_x86;OS_WINDOWS;WIN32;_WIN32;ARMYANTLIB_EXPORTS;_CRT_SECURE_NO_WARNINGS;_STATIC;DEBUG;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+    <BuildLog>
+      <Path>$(ProjectDir)$(MSBuildProjectName).log</Path>
+    </BuildLog>
+    <Lib>
+      <TargetMachine>MachineX86</TargetMachine>
+    </Lib>
+    <Xdcmake>
+      <OutputFile>$(ProjectDir)out\$(TargetName).xml</OutputFile>
+    </Xdcmake>
+    <PreBuildEvent>
+      <Command>$(ProjectDir)..\src\not_cpp\build_start.bat $(Configuration) $(ProjectDir)..\ $(TargetName) $(PlatformTarget)</Command>
+      <Message>---------编译前脚本---------------------</Message>
+    </PreBuildEvent>
+    <PostBuildEvent>
+      <Command>$(ProjectDir)..\src\not_cpp\build_end.bat $(Configuration) $(ProjectDir)..\ $(TargetName) $(PlatformTarget)</Command>
+      <Message>---------生成后脚本---------------------</Message>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug_Static|ARM'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level4</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>_cplusplus;_SCL_SECURE_NO_WARNINGS;_32BIT;_arm;OS_WINDOWS;WIN32;_WIN32;ARMYANTLIB_EXPORTS;_CRT_SECURE_NO_WARNINGS;_STATIC;DEBUG;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <DisableSpecificWarnings>%(DisableSpecificWarnings)</DisableSpecificWarnings>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+    <BuildLog>
+      <Path>$(ProjectDir)$(MSBuildProjectName).log</Path>
+    </BuildLog>
+    <Lib>
+      <TargetMachine>MachineX86</TargetMachine>
+    </Lib>
+    <Xdcmake>
+      <OutputFile>$(ProjectDir)out\$(TargetName).xml</OutputFile>
+    </Xdcmake>
+    <PreBuildEvent>
+      <Command>$(ProjectDir)..\src\not_cpp\build_start.bat $(Configuration) $(ProjectDir)..\ $(TargetName) $(PlatformTarget)</Command>
+      <Message>---------编译前脚本---------------------</Message>
+    </PreBuildEvent>
+    <PostBuildEvent>
+      <Command>$(ProjectDir)..\src\not_cpp\build_end.bat $(Configuration) $(ProjectDir)..\ $(TargetName) $(PlatformTarget)</Command>
+      <Message>---------生成后脚本---------------------</Message>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level4</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>_cplusplus;_SCL_SECURE_NO_WARNINGS;_64BIT;_x86;OS_WINDOWS;WIN64;_WIN64;ARMYANTLIB_EXPORTS;_CRT_SECURE_NO_WARNINGS;_DLL;_SHARED;DEBUG;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+    </ClCompile>
+    <Link>
+      <SubSystem>NotSet</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <Version>0.0</Version>
+      <ProgramDatabaseFile>$(ProjectDir)..\bin\$(TargetName).pdb</ProgramDatabaseFile>
+      <ManifestFile>$(ProjectDir)out\$(TargetName)$(TargetExt).intermediate.manifest</ManifestFile>
+    </Link>
+    <BuildLog>
+      <Path>$(ProjectDir)$(MSBuildProjectName).log</Path>
+    </BuildLog>
+    <Xdcmake>
+      <OutputFile>$(ProjectDir)out\$(TargetName).xml</OutputFile>
+    </Xdcmake>
+    <PreBuildEvent>
+      <Command>$(ProjectDir)..\src\not_cpp\build_start.bat $(Configuration) $(ProjectDir)..\ $(TargetName) $(PlatformTarget)</Command>
+      <Message>---------编译前脚本---------------------</Message>
+    </PreBuildEvent>
+    <PostBuildEvent>
+      <Command>$(ProjectDir)..\src\not_cpp\build_end.bat $(Configuration) $(ProjectDir)..\ $(TargetName) $(PlatformTarget)</Command>
+      <Message>---------生成后脚本---------------------</Message>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug_Static|x64'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level4</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>_cplusplus;_SCL_SECURE_NO_WARNINGS;_64BIT;_x86;OS_WINDOWS;WIN64;_WIN64;ARMYANTLIB_EXPORTS;_CRT_SECURE_NO_WARNINGS;_STATIC;DEBUG;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+    <BuildLog>
+      <Path>$(ProjectDir)$(MSBuildProjectName).log</Path>
+    </BuildLog>
+    <Xdcmake>
+      <OutputFile>$(ProjectDir)out\$(TargetName).xml</OutputFile>
+    </Xdcmake>
+    <PreBuildEvent>
+      <Command>$(ProjectDir)..\src\not_cpp\build_start.bat $(Configuration) $(ProjectDir)..\ $(TargetName) $(PlatformTarget)</Command>
+      <Message>---------编译前脚本---------------------</Message>
+    </PreBuildEvent>
+    <PostBuildEvent>
+      <Command>$(ProjectDir)..\src\not_cpp\build_end.bat $(Configuration) $(ProjectDir)..\ $(TargetName) $(PlatformTarget)</Command>
+      <Message>---------生成后脚本---------------------</Message>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level4</WarningLevel>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>_cplusplus;_SCL_SECURE_NO_WARNINGS;_32BIT;_x86;OS_WINDOWS;WIN32;_WIN32;ARMYANTLIB_EXPORTS;_CRT_SECURE_NO_WARNINGS;_DLL;_SHARED;NDEBUG;_NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+    </ClCompile>
+    <Link>
+      <SubSystem>NotSet</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <Version>0.0</Version>
+      <ProgramDatabaseFile>$(ProjectDir)..\bin\$(TargetName).pdb</ProgramDatabaseFile>
+      <ImageHasSafeExceptionHandlers />
+      <ManifestFile>$(ProjectDir)out\$(TargetName)$(TargetExt).intermediate.manifest</ManifestFile>
+    </Link>
+    <BuildLog>
+      <Path>$(ProjectDir)$(MSBuildProjectName).log</Path>
+    </BuildLog>
+    <Xdcmake>
+      <OutputFile>$(ProjectDir)out\$(TargetName).xml</OutputFile>
+    </Xdcmake>
+    <PreBuildEvent>
+      <Command>$(ProjectDir)..\src\not_cpp\build_start.bat $(Configuration) $(ProjectDir)..\ $(TargetName) $(PlatformTarget)</Command>
+      <Message>---------编译前脚本---------------------</Message>
+    </PreBuildEvent>
+    <PostBuildEvent>
+      <Command>$(ProjectDir)..\src\not_cpp\build_end.bat $(Configuration) $(ProjectDir)..\ $(TargetName) $(PlatformTarget)</Command>
+      <Message>---------生成后脚本---------------------</Message>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">
+    <ClCompile>
+      <WarningLevel>Level4</WarningLevel>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>_cplusplus;_SCL_SECURE_NO_WARNINGS;_32BIT;_arm;OS_WINDOWS;WIN32;_WIN32;ARMYANTLIB_EXPORTS;_CRT_SECURE_NO_WARNINGS;_DLL;_SHARED;NDEBUG;_NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <DisableSpecificWarnings>%(DisableSpecificWarnings)</DisableSpecificWarnings>
+    </ClCompile>
+    <Link>
+      <SubSystem>NotSet</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <Version>0.0</Version>
+      <ProgramDatabaseFile>$(ProjectDir)..\bin\$(TargetName).pdb</ProgramDatabaseFile>
+      <ImageHasSafeExceptionHandlers>
+      </ImageHasSafeExceptionHandlers>
+      <ManifestFile>$(ProjectDir)out\$(TargetName)$(TargetExt).intermediate.manifest</ManifestFile>
+    </Link>
+    <BuildLog>
+      <Path>$(ProjectDir)$(MSBuildProjectName).log</Path>
+    </BuildLog>
+    <Xdcmake>
+      <OutputFile>$(ProjectDir)out\$(TargetName).xml</OutputFile>
+    </Xdcmake>
+    <PreBuildEvent>
+      <Command>$(ProjectDir)..\src\not_cpp\build_start.bat $(Configuration) $(ProjectDir)..\ $(TargetName) $(PlatformTarget)</Command>
+      <Message>---------编译前脚本---------------------</Message>
+    </PreBuildEvent>
+    <PostBuildEvent>
+      <Command>$(ProjectDir)..\src\not_cpp\build_end.bat $(Configuration) $(ProjectDir)..\ $(TargetName) $(PlatformTarget)</Command>
+      <Message>---------生成后脚本---------------------</Message>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <WarningLevel>Level4</WarningLevel>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>_cplusplus;_SCL_SECURE_NO_WARNINGS;_64BIT;_x86;OS_WINDOWS;WIN64;_WIN64;ARMYANTLIB_EXPORTS;_CRT_SECURE_NO_WARNINGS;_DLL;_SHARED;NDEBUG;_NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+    </ClCompile>
+    <Link>
+      <SubSystem>NotSet</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <Version>0.0</Version>
+      <ProgramDatabaseFile>$(ProjectDir)..\bin\$(TargetName).pdb</ProgramDatabaseFile>
+      <ManifestFile>$(ProjectDir)out\$(TargetName)$(TargetExt).intermediate.manifest</ManifestFile>
+    </Link>
+    <BuildLog>
+      <Path>$(ProjectDir)$(MSBuildProjectName).log</Path>
+    </BuildLog>
+    <Xdcmake>
+      <OutputFile>$(ProjectDir)out\$(TargetName).xml</OutputFile>
+    </Xdcmake>
+    <PreBuildEvent>
+      <Command>$(ProjectDir)..\src\not_cpp\build_start.bat $(Configuration) $(ProjectDir)..\ $(TargetName) $(PlatformTarget)</Command>
+      <Message>---------编译前脚本---------------------</Message>
+    </PreBuildEvent>
+    <PostBuildEvent>
+      <Command>$(ProjectDir)..\src\not_cpp\build_end.bat $(Configuration) $(ProjectDir)..\ $(TargetName) $(PlatformTarget)</Command>
+      <Message>---------生成后脚本---------------------</Message>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release_Static|Win32'">
+    <BuildLog>
+      <Path>$(ProjectDir)$(MSBuildProjectName).log</Path>
+    </BuildLog>
+    <Lib>
+      <TargetMachine>MachineX86</TargetMachine>
+    </Lib>
+    <Xdcmake>
+      <OutputFile>$(ProjectDir)out\$(TargetName).xml</OutputFile>
+    </Xdcmake>
+    <ClCompile>
+      <PreprocessorDefinitions>_cplusplus;_SCL_SECURE_NO_WARNINGS;_32BIT;_x86;OS_WINDOWS;WIN32;_WIN32;ARMYANTLIB_EXPORTS;_CRT_SECURE_NO_WARNINGS;_STATIC;NDEBUG;_NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PrecompiledHeader />
+      <WarningLevel>Level4</WarningLevel>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+    </ClCompile>
+    <PreBuildEvent>
+      <Command>$(ProjectDir)..\src\not_cpp\build_start.bat $(Configuration) $(ProjectDir)..\ $(TargetName) $(PlatformTarget)</Command>
+      <Message>---------编译前脚本---------------------</Message>
+    </PreBuildEvent>
+    <PostBuildEvent>
+      <Command>$(ProjectDir)..\src\not_cpp\build_end.bat $(Configuration) $(ProjectDir)..\ $(TargetName) $(PlatformTarget)</Command>
+      <Message>---------生成后脚本---------------------</Message>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release_Static|ARM'">
+    <BuildLog>
+      <Path>$(ProjectDir)$(MSBuildProjectName).log</Path>
+    </BuildLog>
+    <Lib>
+      <TargetMachine>MachineX86</TargetMachine>
+    </Lib>
+    <Xdcmake>
+      <OutputFile>$(ProjectDir)out\$(TargetName).xml</OutputFile>
+    </Xdcmake>
+    <ClCompile>
+      <PreprocessorDefinitions>_cplusplus;_SCL_SECURE_NO_WARNINGS;_32BIT;_arm;OS_WINDOWS;WIN32;_WIN32;ARMYANTLIB_EXPORTS;_CRT_SECURE_NO_WARNINGS;_STATIC;NDEBUG;_NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level4</WarningLevel>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <DisableSpecificWarnings>%(DisableSpecificWarnings)</DisableSpecificWarnings>
+    </ClCompile>
+    <PreBuildEvent>
+      <Command>$(ProjectDir)..\src\not_cpp\build_start.bat $(Configuration) $(ProjectDir)..\ $(TargetName) $(PlatformTarget)</Command>
+      <Message>---------编译前脚本---------------------</Message>
+    </PreBuildEvent>
+    <PostBuildEvent>
+      <Command>$(ProjectDir)..\src\not_cpp\build_end.bat $(Configuration) $(ProjectDir)..\ $(TargetName) $(PlatformTarget)</Command>
+      <Message>---------生成后脚本---------------------</Message>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release_Static|x64'">
+    <BuildLog>
+      <Path>$(ProjectDir)$(MSBuildProjectName).log</Path>
+    </BuildLog>
+    <Xdcmake>
+      <OutputFile>$(ProjectDir)out\$(TargetName).xml</OutputFile>
+    </Xdcmake>
+    <ClCompile>
+      <PreprocessorDefinitions>_cplusplus;_SCL_SECURE_NO_WARNINGS;_64BIT;_x86;OS_WINDOWS;WIN64;_WIN64;ARMYANTLIB_EXPORTS;_CRT_SECURE_NO_WARNINGS;_STATIC;NDEBUG;_NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PrecompiledHeader />
+      <WarningLevel>Level4</WarningLevel>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+    </ClCompile>
+    <PreBuildEvent>
+      <Command>$(ProjectDir)..\src\not_cpp\build_start.bat $(Configuration) $(ProjectDir)..\ $(TargetName) $(PlatformTarget)</Command>
+      <Message>---------编译前脚本---------------------</Message>
+    </PreBuildEvent>
+    <PostBuildEvent>
+      <Command>$(ProjectDir)..\src\not_cpp\build_end.bat $(Configuration) $(ProjectDir)..\ $(TargetName) $(PlatformTarget)</Command>
+      <Message>---------生成后脚本---------------------</Message>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClInclude Include="..\inc\AAAes.h" />
+    <ClInclude Include="..\inc\AABinary.h" />
+    <ClInclude Include="..\inc\AAClassPrivateHandle.hpp" />
+    <ClInclude Include="..\inc\AAConfiguration.h" />
+    <ClInclude Include="..\inc\AADefine.h" />
+    <ClInclude Include="..\inc\AADigraph.hpp" />
+    <ClInclude Include="..\inc\AAFragment.h" />
+    <ClInclude Include="..\inc\AAIStream.h" />
+    <ClInclude Include="..\inc\AAIStream_Com.h" />
+    <ClInclude Include="..\inc\AAIStream_File.h" />
+    <ClInclude Include="..\inc\AAIStream_Memory.h" />
+    <ClInclude Include="..\inc\AAIStream_Pipe.h" />
+    <ClInclude Include="..\inc\AAJson.h" />
+    <ClInclude Include="..\inc\AALog.h" />
+    <ClInclude Include="..\inc\AAMath.h" />
+    <ClInclude Include="..\inc\AAMathStructs.h" />
+    <ClInclude Include="..\inc\AAMessageQueue.h" />
+    <ClInclude Include="..\inc\AANeuron.hpp" />
+    <ClInclude Include="..\inc\AANeuronNetwork.hpp" />
+    <ClInclude Include="..\inc\AASocket.h" />
+    <ClInclude Include="..\inc\AASocket_ProtocolTypes.txt" />
+    <ClInclude Include="..\inc\AASqlClient.h" />
+    <ClInclude Include="..\inc\AASqlStructs.h" />
+    <ClInclude Include="..\inc\AAStateMachine.hpp" />
+    <ClInclude Include="..\inc\AAString.h" />
+    <ClInclude Include="..\inc\AATree.hpp" />
+    <ClInclude Include="..\inc\AATripleMap.hpp" />
+    <ClInclude Include="..\inc\AA_end.h" />
+    <ClInclude Include="..\inc\AA_start.h" />
+    <ClInclude Include="..\inc\ArmyAnt.h" />
+    <ClInclude Include="..\inc\ArmyAntLib.h" />
+    <ClInclude Include="..\inc\C_AADefine.h" />
+    <ClInclude Include="..\inc\C_AANeuron.h" />
+    <ClInclude Include="..\inc\C_AAStream.h" />
+    <ClInclude Include="..\inc\C_ArmyAnt.h" />
+    <ClInclude Include="..\src\base\base.hpp" />
+    <ClInclude Include="..\src\io\AAIStream_Private.hxx" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\src\algorithm\AASqlStructs.cpp" />
+    <ClCompile Include="..\src\algorithm\C_AANeuron.cpp" />
+    <ClCompile Include="..\src\base\ArmyAntLib.cpp" />
+    <ClCompile Include="..\src\data\AAAes.cpp" />
+    <ClCompile Include="..\src\data\AABinary.cpp" />
+    <ClCompile Include="..\src\data\AAJson.cpp" />
+    <ClCompile Include="..\src\io\AAIStream.cpp" />
+    <ClCompile Include="..\src\io\AAIStream_File.cpp" />
+    <ClCompile Include="..\src\io\AAIStream_Memory.cpp" />
+    <ClCompile Include="..\src\io\AASocket.cpp" />
+    <ClCompile Include="..\src\io\AASqlClient.cpp" />
+    <ClCompile Include="..\src\io\C_AAStream.cpp" />
+    <ClCompile Include="..\src\tool\AALog.cpp" />
+    <ClCompile Include="..\src\tool\AAString.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\.gitignore" />
+    <None Include="..\make_all.sh" />
+    <None Include="..\src\not_cpp\build_end.bat" />
+    <None Include="..\src\not_cpp\build_end.sh" />
+    <None Include="..\src\not_cpp\build_start.bat" />
+    <None Include="..\src\not_cpp\build_start.sh" />
+    <None Include="make.sh" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="..\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Natvis Include="..\src\not_cpp\ArmyAntNatvisFile.natvis">
+      <SubType>Designer</SubType>
+    </Natvis>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
