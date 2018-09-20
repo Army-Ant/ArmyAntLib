@@ -205,7 +205,7 @@
     <IntDir>$(ProjectDir)\$(ProjectName)$(Configuration)\</IntDir>
     <TargetName>$(ProjectName)_d_64</TargetName>
     <IncludePath>$(ProjectDir)..\external\boost;$(IncludePath)</IncludePath>
-    <LibraryPath>$(ProjectDir)..\external\boost\stage\lib64;$(LibraryPath)</LibraryPath>
+    <LibraryPath>$(ProjectDir)..\external\boost\stage\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug_Static|x64'">
     <LinkIncremental>true</LinkIncremental>
@@ -214,7 +214,7 @@
     <TargetExt>.lib</TargetExt>
     <TargetName>$(ProjectName)_s_d_64</TargetName>
     <IncludePath>$(ProjectDir)..\external\boost;$(IncludePath)</IncludePath>
-    <LibraryPath>$(ProjectDir)..\external\boost\stage\lib64;$(LibraryPath)</LibraryPath>
+    <LibraryPath>$(ProjectDir)..\external\boost\stage\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
@@ -237,7 +237,7 @@
     <IntDir>$(ProjectDir)\$(ProjectName)$(Configuration)\</IntDir>
     <TargetName>$(ProjectName)_64</TargetName>
     <IncludePath>$(ProjectDir)..\external\boost;$(IncludePath)</IncludePath>
-    <LibraryPath>$(ProjectDir)..\external\boost\stage\lib64;$(LibraryPath)</LibraryPath>
+    <LibraryPath>$(ProjectDir)..\external\boost\stage\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release_Static|Win32'">
     <OutDir>$(ProjectDir)..\bin\</OutDir>
@@ -261,7 +261,7 @@
     <TargetExt>.lib</TargetExt>
     <TargetName>$(ProjectName)_s_64</TargetName>
     <IncludePath>$(ProjectDir)..\external\boost;$(IncludePath)</IncludePath>
-    <LibraryPath>$(ProjectDir)..\external\boost\stage\lib64;$(LibraryPath)</LibraryPath>
+    <LibraryPath>$(ProjectDir)..\external\boost\stage\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
