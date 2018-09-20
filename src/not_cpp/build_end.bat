@@ -34,16 +34,22 @@ set TargetName=%3
 set TargetPlatform=%4
 
 :CopyStaticLibFile or resolve the static library dependencies
-if "%TargetPlatform%"=="x64" (set TargetLib=lib64) else (set TargetLib=lib)
+if "%TargetPlatform%"=="x64" (
+    set TargetLib=lib64
+	set TargetX=x64
+) else (
+    set TargetLib=lib
+	set TargetX=x32
+)
 if "%ConfigType:~-5%"=="tatic" (
 echo "Copy the dependenced static libraries"
-if not exist %ProjectPath%lib\%TargetLib% (mkdir %ProjectPath%lib\%TargetLib%)
-copy %ProjectPath%external\boost\stage\%TargetLib%\libboost_system-vc140-mt-gd-1_59.lib %ProjectPath%lib\%TargetLib%\ /Y
-copy %ProjectPath%external\boost\stage\%TargetLib%\libboost_system-vc140-mt-1_59.lib %ProjectPath%lib\%TargetLib%\ /Y
-copy %ProjectPath%external\boost\stage\%TargetLib%\libboost_date_time-vc140-mt-gd-1_59.lib %ProjectPath%lib\%TargetLib%\ /Y
-copy %ProjectPath%external\boost\stage\%TargetLib%\libboost_date_time-vc140-mt-1_59.lib %ProjectPath%lib\%TargetLib%\ /Y
-copy %ProjectPath%external\boost\stage\%TargetLib%\libboost_regex-vc140-mt-gd-1_59.lib %ProjectPath%lib\%TargetLib%\ /Y
-copy %ProjectPath%external\boost\stage\%TargetLib%\libboost_regex-vc140-mt-1_59.lib %ProjectPath%lib\%TargetLib%\ /Y
+if not exist %ProjectPath%lib (mkdir %ProjectPath%lib)
+copy %ProjectPath%external\boost\stage\lib\libboost_system-vc141-mt-gd-%TargetX%-1_69.lib %ProjectPath%lib\ /Y
+copy %ProjectPath%external\boost\stage\lib\libboost_system-vc141-mt-%TargetX%-1_69.lib %ProjectPath%lib\ /Y
+copy %ProjectPath%external\boost\stage\lib\libboost_date_time-vc141-mt-gd-%TargetX%-1_69.lib %ProjectPath%lib\ /Y
+copy %ProjectPath%external\boost\stage\lib\libboost_date_time-vc141-mt-%TargetX%-1_69.lib %ProjectPath%lib\ /Y
+copy %ProjectPath%external\boost\stage\lib\libboost_regex-vc141-mt-gd-%TargetX%-1_69.lib %ProjectPath%lib\ /Y
+copy %ProjectPath%external\boost\stage\lib\libboost_regex-vc141-mt-%TargetX%-1_69.lib %ProjectPath%lib\ /Y
 )
 
 @echo on

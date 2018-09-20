@@ -1,19 +1,19 @@
 :Start
-if exist %PROTOCPP_PATH% (
+if exist boost (
     @echo "The boost has been exist!"
 	goto End
 )
 
 @echo "Clone submodules!"
 cd ..
-git submodule update --progress
+git submodule update --init --progress
 
 @echo "Clone submodules for boost"
 cd external/boost
-git submodule update --progress
+git submodule update --init --progress
 
 @echo "Build boost library"
 ./bootstrap.bat
-./bjam stage link=static runtime-link=static threading=multi address-model=64 debug release
+./bjam stage
 
 :End
