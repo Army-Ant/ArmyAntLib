@@ -239,7 +239,7 @@ class ARMYANTLIB_API TCPServer :public Socket
 public:
 	//默认构造函数，参数为：
 	// nMaxConnNum：最大允许同时连接的数量
-	TCPServer(int32 maxConnNum = 5);
+	TCPServer(int32 maxConnNum = 65536);
 
 	//析构函数不应负责关闭服务器，请调用者务必遵守调用规则,自行调用关闭服务器的函数,以此规范代码层次结构
 	virtual ~TCPServer(void);
@@ -248,13 +248,13 @@ public:
 	//以下是连接前的一些设定
 
 	//设定收到信息回调
-	bool setGettingCallBack(ServerGettingCall recvCB, void*pUser = nullptr);
+	virtual bool setGettingCallBack(ServerGettingCall recvCB, void*pUser = nullptr);
 	//设定收到连接回调
-	bool setConnectCallBack(ServerConnectCall connectCB, void*pUser = nullptr);
+	virtual bool setConnectCallBack(ServerConnectCall connectCB, void*pUser = nullptr);
 	//设定断开连接回调
-	bool setDisconnectCallBack(ServerLostCall disconnCB, void*pUser = nullptr);
+	virtual bool setDisconnectCallBack(ServerLostCall disconnCB, void*pUser = nullptr);
 	//设定可同时接受的最大连接数,如果传入参数不是正数，会返回false
-	bool setMaxConnNum(int32 maxClientNum);
+	virtual bool setMaxConnNum(int32 maxClientNum);
 
 	virtual bool setMaxIOBufferLen(uint32 len = 65530) override;
 
@@ -262,31 +262,31 @@ public:
 	//以下是连接和实际收发操作
 
 	//开启服务器，开始监听并运行回调
-	bool start(uint16 port, bool ipv6 = false);
+	virtual bool start(uint16 port, bool ipv6 = false);
 	//停止服务器，关闭套接字和所有传入连接,输入参数为最大等待时间，超过此时限就强制关闭线程
-	bool stop(uint32 waitTime);
+	virtual bool stop(uint32 waitTime);
 	//断开客户端
-	bool givenUpClient(uint32 index);
-	bool givenUpClient(const IPAddr& addr, uint16 port);
-	bool givenUpAllClients();
+	virtual bool givenUpClient(uint32 index);
+	virtual bool givenUpClient(const IPAddr& addr, uint16 port);
+	virtual bool givenUpAllClients();
 	//向指定索引的客户端发送数据
-	mac_uint send(uint32 index, void*data, uint64 len, bool isAsync = true);
+	virtual mac_uint send(uint32 index, void*data, uint64 len, bool isAsync = true);
 
 public:
 	//以下是获取状态
 
 	//获取最大可连接的客户端数
-	int getMaxConnNum() const;
+	virtual int getMaxConnNum() const;
 	//获取当前连接的客户端数
-	int getNowConnNum() const;
+	virtual int getNowConnNum() const;
 	//根据索引获取对应客户端的基本信息
-	IPAddrInfo getClientByIndex(int index) const;
+	virtual IPAddrInfo getClientByIndex(int index) const;
 	//获取当前连接的客户端列表
-	void getAllClients(IPAddrInfo* ref) const;
+	virtual void getAllClients(IPAddrInfo* ref) const;
 	//根据地址和端口号获取客户端索引
-	int getIndexByAddrPort(const IPAddr& clientAddr, uint16 port);
+	virtual int getIndexByAddrPort(const IPAddr& clientAddr, uint16 port);
 	//服务器是否正在监听
-	bool isStarting() const;
+	virtual bool isStarting() const;
 
 	AA_FORBID_COPY_CTOR(TCPServer);
 	AA_FORBID_ASSGN_OPR(TCPServer);
@@ -307,35 +307,35 @@ public:
 	//以下是连接前的一些设定
 
 	//设置服务器地址,不可以是INADDR_ANY
-	bool setServerAddr(const IPAddr& addr);
+	virtual bool setServerAddr(const IPAddr& addr);
 	//设定服务器端口,如果传入端口号为0，会返回false
-	bool setServerPort(uint16 port);
+	virtual bool setServerPort(uint16 port);
 	//设定断开连接回调
-	bool setLostServerCallBack(ClientLostCall disconnCB, void*pUser);
+	virtual bool setLostServerCallBack(ClientLostCall disconnCB, void*pUser);
 	//设定收到信息回调
-	bool setGettingCallBack(ClientGettingCall recvCB, void*pUser = nullptr);
+	virtual bool setGettingCallBack(ClientGettingCall recvCB, void*pUser = nullptr);
 
 public:
 	//以下是连接和实际收发操作
 
 	//连接服务器
-	bool connectServer(uint16 port, bool isAsync, ClientConnectCall asyncConnectCallBack = nullptr, void* asyncConnetcCallData = nullptr);
+	virtual bool connectServer(uint16 port, bool isAsync, ClientConnectCall asyncConnectCallBack = nullptr, void* asyncConnectCallData = nullptr);
 	//断开连接
-	bool disconnectServer(uint32 waitTime);
+	virtual bool disconnectServer(uint32 waitTime);
 	//向服务器发送消息
-	mac_uint send(const void*pBuffer, size_t len, bool isAsync = false);
+	virtual mac_uint send(const void*pBuffer, size_t len, bool isAsync = false);
 
 public:
 	//以下是获取状态
 
 	//获取服务器IP地址
-	const IPAddr& getServerAddr() const;
+	virtual const IPAddr& getServerAddr() const;
 	//获取服务器端口
-	uint16 getServerPort() const;
-	const IPAddr& getLocalAddr()const;
-	uint16 getLocalPort()const;
+	virtual uint16 getServerPort() const;
+	virtual const IPAddr& getLocalAddr()const;
+	virtual uint16 getLocalPort()const;
 	//是否在连接状态
-	bool isConnection() const;
+	virtual bool isConnection() const;
 
 	AA_FORBID_COPY_CTOR(TCPClient);
 	AA_FORBID_ASSGN_OPR(TCPClient);
@@ -372,6 +372,38 @@ public:
 
 	AA_FORBID_COPY_CTOR(UDPSilgle);
 	AA_FORBID_ASSGN_OPR(UDPSilgle);
+};
+
+// 用于WebSocket的服务器类
+class ARMYANTLIB_API TCPWebSocketServer : public TCPServer{
+public:
+	TCPWebSocketServer(int32 maxConnNum = 65536);
+	virtual ~TCPWebSocketServer();
+
+public:
+	//开启服务器，开始监听并运行回调
+	virtual bool start(uint16 port, bool ipv6 = false) override;
+	//停止服务器，关闭套接字和所有传入连接,输入参数为最大等待时间，超过此时限就强制关闭线程
+	virtual bool stop(uint32 waitTime) override;
+	//断开客户端
+	virtual bool givenUpClient(uint32 index) override;
+	virtual bool givenUpClient(const IPAddr& addr, uint16 port) override;
+	virtual bool givenUpAllClients() override;
+	//向指定索引的客户端发送数据
+	virtual mac_uint send(uint32 index, void*data, uint64 len, bool isAsync = true) override;
+
+};
+
+class ARMYANTLIB_API TCPWebSocketClient : public TCPClient{
+public:
+	TCPWebSocketClient();
+	virtual ~TCPWebSocketClient();
+
+public:
+	virtual bool connectServer(uint16 port, bool isAsync, ClientConnectCall asyncConnectCallBack = nullptr, void* asyncConnectCallData = nullptr) override;
+	virtual bool disconnectServer(uint32 waitTime) override;
+	virtual mac_uint send(const void*pBuffer, size_t len, bool isAsync = false) override;
+	
 };
 
 } // namespace ArmyAnt

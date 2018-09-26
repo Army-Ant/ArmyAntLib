@@ -33,6 +33,7 @@
 #include <mutex>
 #include <memory>
 #include <boost/asio.hpp>
+#include <boost/beast.hpp>
 
 #ifdef OS_WINDOWS
 #include <WinSock2.h>
@@ -45,6 +46,8 @@
 
 
 #define AA_HANDLE_MANAGER ClassPrivateHandleManager<Socket, Socket_Private>::getInstance()
+
+#define AA_HANDLE_MANAGER_WEBSOCKET ClassPrivateHandleManager<Socket, WebSocket_Private>::getInstance()
 
 
 namespace ArmyAnt{
@@ -550,6 +553,16 @@ void IPAddr_v6::parseFromString(const char * str){
 	}
 }
 
+
+SocketException::SocketException(ErrorType type, const char * message, int code)
+	: type(type), message(message), code(code){}
+
+SocketException::SocketException(const SocketException & value)
+	: type(value.type), message(value.message), code(value.code){}
+
+SocketException::SocketException(SocketException && moved)
+	: type(moved.type), message(moved.message), code(moved.code){}
+
 /***************** Defination for private data structs ********************/
 
 // 代表一个TCP连接的socket套接字数据
@@ -561,6 +574,7 @@ struct TCP_Socket_Datas{
 	uint32 getNextIndexOfBuffer() const;
 
 	std::shared_ptr<boost::asio::ip::tcp::socket> s;	//boost的socket连接对象
+	boost::asio::ip::tcp::socket* ps;	//boost的socket连接对象
 	std::map<uint32, uint8*> buffer;		//接受信息的buffer
 	std::mutex mutex;
 	IPAddr* addr = nullptr;			// 对方ip地址
@@ -626,7 +640,10 @@ struct TCPServer_Private : public Socket_Private{
 	TCPServer_Private(int32 maxClientNum) :Socket_Private(), maxClientNum(maxClientNum), acceptor(localService){};
 	virtual ~TCPServer_Private();
 
+	bool start(uint16 port, bool ipv6, boost::asio::ip::tcp::socket*socket, bool isShared);
+
 	static void onConnect(TCPServer*server, std::shared_ptr<boost::asio::ip::tcp::socket> s, boost::system::error_code err);
+	static void onConnect(TCPServer*server, boost::asio::ip::tcp::socket* s, boost::system::error_code err);
 	static void onReceived(TCPServer*server, std::shared_ptr<boost::asio::ip::tcp::socket> s, uint32 index, boost::system::error_code err, std::size_t size, uint32 bufferIndex);
 
 	virtual uint8* getTargetBuffer(uint32 clientIndex, uint32 bufferIndex) override;
@@ -655,9 +672,12 @@ struct TCPClient_Private : public Socket_Private, public TCP_Socket_Datas{
 	TCPClient_Private() :Socket_Private(), TCP_Socket_Datas(){};
 	virtual ~TCPClient_Private();
 
-	static void onAsyncConnect(Socket::ClientConnectCall asyncConnectCallBack, void* asyncConnectCallData, TCPClient*client, boost::system::error_code err);
-	static void onConnect(Socket::ClientConnectCall asyncConnectCallBack, void* asyncConnectCallData, TCPClient*client, boost::system::error_code err);
-	static void onReceived(Socket::ClientConnectCall asyncConnectCallBack, void* asyncConnectCallData, TCPClient*client, boost::system::error_code err, std::size_t size, uint32 bufferIndex);
+	bool connectServer(uint16 port, bool isAsync, TCPClient::ClientConnectCall asyncConnectCallBack, void* asyncConnectCallData, boost::asio::ip::tcp::socket* socket, bool shared);
+	bool disconnectServer(uint32 waitTime);
+
+	static void onAsyncConnect(Socket::ClientConnectCall asyncConnectCallBack, void* asyncConnectCallData, TCPClient_Private*client, boost::system::error_code err);
+	static void onConnect(Socket::ClientConnectCall asyncConnectCallBack, void* asyncConnectCallData, TCPClient_Private*client, boost::system::error_code err);
+	static void onReceived(Socket::ClientConnectCall asyncConnectCallBack, void* asyncConnectCallData, TCPClient_Private*client, boost::system::error_code err, std::size_t size, uint32 bufferIndex);
 
 	virtual uint8* getTargetBuffer(uint32 clientIndex, uint32 bufferIndex) override;
 	virtual void removeTargetBuffer(uint32 clientIndex, uint32 bufferIndex) override;
@@ -666,6 +686,7 @@ struct TCPClient_Private : public Socket_Private, public TCP_Socket_Datas{
 	void* lostCallData = nullptr;
 	Socket::ClientGettingCall gettingCallBack = nullptr;	// 接受信息时的回调
 	void* gettingCallData = nullptr;	// 接受信息时的回调要传递的额外数据
+	bool isSocketShared = true;
 
 	AA_FORBID_COPY_CTOR(TCPClient_Private);
 	AA_FORBID_ASSGN_OPR(TCPClient_Private);
@@ -689,6 +710,12 @@ struct UDPSingle_Private : public Socket_Private{
 
 	AA_FORBID_COPY_CTOR(UDPSingle_Private);
 	AA_FORBID_ASSGN_OPR(UDPSingle_Private);
+};
+
+struct WebSocket_Private{
+	WebSocket_Private(boost::asio::io_service&localService);
+
+	boost::beast::websocket::stream<boost::asio::ip::tcp::socket> stream;
 };
 
 
@@ -782,6 +809,70 @@ void Socket_Private::reportError(SocketException err, IPAddr&addr, uint16 port, 
 
 TCPServer_Private::~TCPServer_Private(){}
 
+bool TCPServer_Private::start(uint16 port, bool ipv6, boost::asio::ip::tcp::socket*socket, bool shared){
+	std::shared_ptr<IPAddr> ip = nullptr;
+	if(ipv6){
+		std::shared_ptr<IPAddr> ip6(new IPAddr_v6(nullptr));
+		ip = ip6;
+	} else{
+		std::shared_ptr<IPAddr> ip4(new IPAddr_v4(0, 0, 0, 0));
+		ip = ip4;
+	}
+
+	if(isListening){
+		SocketException ex(SocketException::ErrorType::SocketStatueError, "The server has started");
+		reportError(ex, *ip, port, "StartServer");
+		return false;
+	}
+
+	// 服务器总是异步
+	isAsync = true;
+	serverPort = port;
+	// 打开连接接收器
+	auto protocol = ipv6 ? boost::asio::ip::tcp::v6() : boost::asio::ip::tcp::v4();
+	try{
+		auto endP = boost::asio::ip::tcp::endpoint(protocol, port);
+		acceptor.open(protocol);
+		acceptor.bind(endP);
+		// 开始监听
+		acceptor.listen(maxClientNum);
+		// 连接套接字
+		if(shared){
+			std::shared_ptr<boost::asio::ip::tcp::socket> s(socket);
+			acceptor.async_accept(*s, std::bind(TCPServer_Private::onConnect, this, s, std::placeholders::_1));
+			localServiceThread = std::shared_ptr<std::thread>(new std::thread([this, ip, port](){
+				boost::system::error_code err;
+				localService.reset();
+				localService.run(err);
+				auto code = err.value();
+				auto message = err.message();
+				SocketException ex(SocketException::ErrorType::SystemError, message.c_str(), code);
+				reportError(ex, *ip, port, "StartServer localServiceThread");
+			}));
+		} else{
+			acceptor.async_accept(*socket, std::bind(TCPServer_Private::onConnect, this, socket, std::placeholders::_1));
+			localServiceThread = std::shared_ptr<std::thread>(new std::thread([this, ip, port](){
+				boost::system::error_code err;
+				localService.reset();
+				localService.run(err);
+				auto code = err.value();
+				auto message = err.message();
+				SocketException ex(SocketException::ErrorType::SystemError, message.c_str(), code);
+				reportError(ex, *ip, port, "StartServer localServiceThread");
+			}));
+		}
+	} catch(boost::system::system_error e){
+		auto code = e.code().value();
+		auto message = e.code().message();
+		SocketException ex(SocketException::ErrorType::SystemError, message.c_str(), code);
+		reportError(ex, *ip, port, "StartServer");
+		return false;
+	}
+
+	isListening = true;
+	return true;
+}
+
 void TCPServer_Private::onConnect(TCPServer*server, std::shared_ptr<boost::asio::ip::tcp::socket> s, boost::system::error_code err){
 	auto hd = static_cast<TCPServer_Private*>(AA_HANDLE_MANAGER[server]);
 	if(!err){
@@ -809,6 +900,34 @@ void TCPServer_Private::onConnect(TCPServer*server, std::shared_ptr<boost::asio:
 	}
 	std::shared_ptr<boost::asio::ip::tcp::socket> news(new boost::asio::ip::tcp::socket(hd->localService));
 	hd->acceptor.async_accept(*news, std::bind(TCPServer_Private::onConnect, server, news, std::placeholders::_1));
+}
+
+void TCPServer_Private::onConnect(TCPServer*server, boost::asio::ip::tcp::socket* s, boost::system::error_code err){
+	auto hd = static_cast<TCPServer_Private*>(AA_HANDLE_MANAGER[server]);
+	if(!err){
+		uint32 index = 0;
+		hd->clientMutex.lock();
+		for(uint32 i = 0; i < hd->clients.size() + 1; i++)
+			if(hd->clients.find(i) == hd->clients.end()){
+				hd->clients.insert(std::pair<uint32, TCP_Socket_Datas*>(i, new TCP_Socket_Datas(s, &toAAAddr(s->remote_endpoint().address()), s->remote_endpoint().port(), &toAAAddr(s->local_endpoint().address()), s->local_endpoint().port())));
+				index = i;
+				break;
+			}
+		auto cl = hd->clients.find(index)->second;
+		if(hd->connectCallBack == nullptr || hd->connectCallBack(index, hd->connetcCallData)){
+			cl->mutex.lock();
+			auto buffer = new uint8[hd->maxBufferLen];
+			uint32 ind = cl->getNextIndexOfBuffer();
+			cl->buffer.insert(std::make_pair(ind, buffer));
+			cl->mutex.unlock();
+			memset(buffer, 0, hd->maxBufferLen);
+			s->async_read_some(boost::asio::buffer(buffer, hd->maxBufferLen), std::bind(TCPServer_Private::onReceived, server, s, index, std::placeholders::_1, std::placeholders::_2, ind));
+		} else{
+			server->givenUpClient(index);
+		}
+		hd->clientMutex.unlock();
+	}
+	hd->acceptor.async_accept(*s, std::bind(TCPServer_Private::onConnect, server, s, std::placeholders::_1));
 }
 
 void TCPServer_Private::onReceived(TCPServer*server, std::shared_ptr<boost::asio::ip::tcp::socket> s, uint32 index, boost::system::error_code err, std::size_t size, uint32 bufferIndex){
@@ -870,117 +989,182 @@ void TCPServer_Private::removeTargetBuffer(uint32 clientIndex, uint32 bufferInde
 	clientMutex.unlock();
 }
 
-TCPClient_Private::~TCPClient_Private(){}
+TCPClient_Private::~TCPClient_Private(){
+	if(!isSocketShared)
+		s.reset();
+}
 
-void TCPClient_Private::onAsyncConnect(Socket::ClientConnectCall asyncConnectCallBack, void* asyncConnectCallData, TCPClient*client, boost::system::error_code err){
-	auto hd = static_cast<TCPClient_Private*>(AA_HANDLE_MANAGER[client]);
+bool TCPClient_Private::connectServer(uint16 port, bool isAsync, TCPClient::ClientConnectCall asyncConnectCallBack, void * asyncConnectCallData, boost::asio::ip::tcp::socket* socket, bool shared){
+	if(isListening){
+		SocketException ex(SocketException::ErrorType::SocketStatueError, "The server has connected");
+		reportError(ex, *addr, port, "ConnectServer");
+		return false;
+	}
+	isAsync = isAsync;
+	try{
+		isSocketShared = shared;
+		s.reset(socket);
+		//hd->s->open(protocol);
+	} catch(boost::system::system_error e){
+		auto code = e.code().value();
+		auto msg = e.code().message();
+		SocketException ex(SocketException::ErrorType::SystemError, msg.c_str(), code);
+		reportError(ex, *addr, port, "ConnectServer");
+		disconnectServer(10000);
+		return false;
+	}
+	if(isAsync){
+		s->async_connect(boost::asio::ip::tcp::endpoint(toBoostAddr(*addr), port), std::bind(TCPClient_Private::onAsyncConnect, asyncConnectCallBack, asyncConnectCallData, this, std::placeholders::_1));
+	} else{
+		try{
+			s->connect(boost::asio::ip::tcp::endpoint(toBoostAddr(*addr), port));
+		} catch(boost::system::system_error e){
+			auto code = e.code().value();
+			auto msg = e.code().message();
+			SocketException ex(SocketException::ErrorType::SystemError, msg.c_str(), code);
+			reportError(ex, *addr, port, "ConnectServer");
+			disconnectServer(20000);
+			return false;
+		}
+		onConnect(asyncConnectCallBack, asyncConnectCallData, this, boost::system::error_code());
+	}
+	return true;
+}
+
+bool TCPClient_Private::disconnectServer(uint32 waitTime){
+	mutex.lock();
+	if(s != nullptr){
+		boost::system::error_code err;
+		if(s->is_open()){
+			s->shutdown(s->shutdown_both, err);
+		}
+		if(!err)
+			s->cancel(err);
+		if(!err){
+			s->close(err);
+		}
+	}
+	localService.stop();
+	if(localServiceThread != nullptr && localServiceThread->joinable() && localServiceThread->get_id() != std::this_thread::get_id()){
+		localServiceThread->join();
+	}
+	isListening = false;
+	AA_SAFE_DEL(addr);
+	AA_SAFE_DEL(localAddr);
+	for(auto i = buffer.begin(); i != buffer.end(); ++i){
+		AA_SAFE_DELALL(i->second);
+	}
+	s.reset();
+	mutex.unlock();
+	return true;
+}
+
+void TCPClient_Private::onAsyncConnect(Socket::ClientConnectCall asyncConnectCallBack, void* asyncConnectCallData, TCPClient_Private*client, boost::system::error_code err){
 	if(err){
 		asyncConnectCallBack(!!err, asyncConnectCallData);
-		hd->s->cancel(err);
+		client->s->cancel(err);
 		if(!err){
 			boost::system::error_code closeErr;
-			if(hd->s->is_open()){
-				hd->s->shutdown(hd->s->shutdown_both, closeErr);
+			if(client->s->is_open()){
+				client->s->shutdown(client->s->shutdown_both, closeErr);
 			}
 			if(!closeErr)
-				hd->s->cancel(closeErr);
+				client->s->cancel(closeErr);
 			if(!closeErr){
-				hd->s->close(closeErr);
+				client->s->close(closeErr);
 			}
-			hd->s.reset();
+			client->s.reset();
 		}
 	} else{
 		onConnect(asyncConnectCallBack, asyncConnectCallData, client, err);
 	}
 }
 
-void TCPClient_Private::onConnect(Socket::ClientConnectCall asyncConnectCallBack, void* asyncConnectCallData, TCPClient*client, boost::system::error_code err){
-	auto hd = static_cast<TCPClient_Private*>(AA_HANDLE_MANAGER[client]);
-	hd->isListening = true;
-	hd->localAddr = IPAddr::clone(toAAAddr(hd->s->local_endpoint().address()));
-	hd->localport = hd->s->local_endpoint().port();
-	auto buffer = new uint8[hd->maxBufferLen];
-	uint32 ind = hd->getNextIndexOfBuffer();
-	hd->mutex.lock();
-	hd->buffer.insert(std::make_pair(ind, buffer));
-	hd->mutex.unlock();
-	memset(buffer, 0, hd->maxBufferLen);
-	hd->s->async_read_some(boost::asio::buffer(buffer, hd->maxBufferLen), std::bind(onReceived, asyncConnectCallBack, asyncConnectCallData, client, std::placeholders::_1, std::placeholders::_2, ind));
-	hd->localServiceThread = std::shared_ptr<std::thread>(new std::thread([hd, &buffer, ind](){
+void TCPClient_Private::onConnect(Socket::ClientConnectCall asyncConnectCallBack, void* asyncConnectCallData, TCPClient_Private*client, boost::system::error_code err){
+	client->isListening = true;
+	client->localAddr = IPAddr::clone(toAAAddr(client->s->local_endpoint().address()));
+	client->localport = client->s->local_endpoint().port();
+	auto buffer = new uint8[client->maxBufferLen];
+	uint32 ind = client->getNextIndexOfBuffer();
+	client->mutex.lock();
+	client->buffer.insert(std::make_pair(ind, buffer));
+	client->mutex.unlock();
+	memset(buffer, 0, client->maxBufferLen);
+	client->s->async_read_some(boost::asio::buffer(buffer, client->maxBufferLen), std::bind(onReceived, asyncConnectCallBack, asyncConnectCallData, client, std::placeholders::_1, std::placeholders::_2, ind));
+	client->localServiceThread = std::shared_ptr<std::thread>(new std::thread([client, &buffer, ind](){
 		boost::system::error_code err;
-		hd->localService.reset();
-		hd->localService.run(err);
+		client->localService.reset();
+		client->localService.run(err);
 		auto v = err.value();
 		auto m = err.message();
 		SocketException e(SocketException::ErrorType::SystemError, m.c_str(), v);
-		hd->reportError(e, *hd->addr, hd->port, "onConnect localServiceThread");
+		client->reportError(e, *client->addr, client->port, "onConnect localServiceThread");
 		switch(v){
 			case boost::asio::error::eof:
 			case boost::asio::error::connection_aborted:
 			case boost::asio::error::connection_reset:
-				if(hd->s != nullptr){
-					if(hd->s->is_open()){
-						hd->s->shutdown(hd->s->shutdown_both, err);
+				if(client->s != nullptr){
+					if(client->s->is_open()){
+						client->s->shutdown(client->s->shutdown_both, err);
 					}
 					if(!err)
-						hd->s->cancel(err);
+						client->s->cancel(err);
 					if(!err){
-						hd->s->close(err);
+						client->s->close(err);
 					}
 				}
-				hd->localService.stop();
-				hd->isListening = false;
+				client->localService.stop();
+				client->isListening = false;
 				AA_SAFE_DELALL(buffer);
-				hd->s.reset();
-				hd->mutex.lock();
-				hd->buffer.erase(hd->buffer.find(ind));
-				hd->mutex.unlock();
+				client->s.reset();
+				client->mutex.lock();
+				client->buffer.erase(client->buffer.find(ind));
+				client->mutex.unlock();
 				// 此处不进行lostCallback回调
 				return;
 		}
 	}));
 }
 
-void TCPClient_Private::onReceived(Socket::ClientConnectCall asyncConnectCallBack, void* asyncConnectCallData, TCPClient*client, boost::system::error_code err, std::size_t size, uint32 bufferIndex){
-	auto hd = static_cast<TCPClient_Private*>(AA_HANDLE_MANAGER[client]);
-	hd->mutex.lock();
-	auto buffer = hd->buffer.find(bufferIndex)->second;
-	hd->mutex.unlock();
+void TCPClient_Private::onReceived(Socket::ClientConnectCall asyncConnectCallBack, void* asyncConnectCallData, TCPClient_Private*client, boost::system::error_code err, std::size_t size, uint32 bufferIndex){
+	client->mutex.lock();
+	auto buffer = client->buffer.find(bufferIndex)->second;
+	client->mutex.unlock();
 	if(!err){
 		if(size > 0){
-			hd->gettingCallBack(buffer, size, hd->gettingCallData);
+			client->gettingCallBack(buffer, size, client->gettingCallData);
 		}
 	} else{
 		auto v = err.value();
 		auto m = err.message();
 		SocketException e(SocketException::ErrorType::SystemError, m.c_str(), v);
-		hd->reportError(e, *hd->addr, hd->port, "onReceived");
+		client->reportError(e, *client->addr, client->port, "onReceived");
 		switch(v){
 			case boost::asio::error::eof:
 			case boost::asio::error::connection_aborted:
 			case boost::asio::error::connection_reset:
-				if(hd->s != nullptr){
-					if(hd->s->is_open()){
-						hd->s->shutdown(hd->s->shutdown_both, err);
+				if(client->s != nullptr){
+					if(client->s->is_open()){
+						client->s->shutdown(client->s->shutdown_both, err);
 					}
 					if(!err)
-						hd->s->cancel(err);
+						client->s->cancel(err);
 					if(!err){
-						hd->s->close(err);
+						client->s->close(err);
 					}
 				}
-				hd->localService.stop();
-				hd->isListening = false;
+				client->localService.stop();
+				client->isListening = false;
 				AA_SAFE_DELALL(buffer);
-				hd->s.reset(); 
-				hd->lostCallBack(hd->lostCallData);
-				hd->mutex.lock();
-				hd->buffer.erase(hd->buffer.find(bufferIndex));
-				hd->mutex.unlock();
+				client->s.reset();
+				client->lostCallBack(client->lostCallData);
+				client->mutex.lock();
+				client->buffer.erase(client->buffer.find(bufferIndex));
+				client->mutex.unlock();
 				return;
 		}
 	}
-	hd->s->async_read_some(boost::asio::buffer(buffer, hd->maxBufferLen), std::bind(onReceived, asyncConnectCallBack, asyncConnectCallData, client, std::placeholders::_1, std::placeholders::_2, bufferIndex));
+	client->s->async_read_some(boost::asio::buffer(buffer, client->maxBufferLen), std::bind(onReceived, asyncConnectCallBack, asyncConnectCallData, client, std::placeholders::_1, std::placeholders::_2, bufferIndex));
 }
 
 uint8 * TCPClient_Private::getTargetBuffer(uint32 clientIndex, uint32 bufferIndex){
@@ -1006,6 +1190,10 @@ uint8 * UDPSingle_Private::getTargetBuffer(uint32 clientIndex, uint32 bufferInde
 }
 
 void UDPSingle_Private::removeTargetBuffer(uint32 clientIndex, uint32 bufferIndex){
+}
+
+WebSocket_Private::WebSocket_Private(boost::asio::io_service&localService) :stream{localService}{
+	
 }
 
 /*********************** Source for class Socket **************************/
@@ -1135,55 +1323,7 @@ bool TCPServer::setMaxIOBufferLen(uint32 len){
 
 bool TCPServer::start(uint16 port, bool ipv6){
 	auto hd = static_cast<TCPServer_Private*>(AA_HANDLE_MANAGER[this]);
-
-	std::shared_ptr<IPAddr> ip = nullptr;
-	if(ipv6){
-		std::shared_ptr<IPAddr> ip6(new IPAddr_v6(nullptr));
-		ip = ip6;
-	} else{
-		std::shared_ptr<IPAddr> ip4(new IPAddr_v4(0, 0, 0, 0));
-		ip = ip4;
-	}
-
-	if(hd->isListening){
-		SocketException ex(SocketException::ErrorType::SocketStatueError, "The server has started");
-		hd->reportError(ex, *ip, port, "StartServer");
-		return false;
-	}
-
-	// 服务器总是异步
-	hd->isAsync = true;
-	hd->serverPort = port;
-	// 打开连接接收器
-	auto protocol = ipv6 ? boost::asio::ip::tcp::v6() : boost::asio::ip::tcp::v4();
-	try{
-		auto endP = boost::asio::ip::tcp::endpoint(protocol, port);
-		hd->acceptor.open(protocol);
-		hd->acceptor.bind(endP);
-		// 开始监听
-		hd->acceptor.listen(hd->maxClientNum);
-		// 连接套接字
-		std::shared_ptr<boost::asio::ip::tcp::socket> s(new boost::asio::ip::tcp::socket(hd->localService));
-		hd->acceptor.async_accept(*s, std::bind(TCPServer_Private::onConnect, this, s, std::placeholders::_1));
-		hd->localServiceThread = std::shared_ptr<std::thread>(new std::thread([hd, ip, port](){
-			boost::system::error_code err;
-			hd->localService.reset();
-			hd->localService.run(err);
-			auto code = err.value();
-			auto message = err.message();
-			SocketException ex(SocketException::ErrorType::SystemError, message.c_str(), code);
-			hd->reportError(ex, *ip, port, "StartServer localServiceThread");
-		}));
-	} catch(boost::system::system_error e){
-		auto code = e.code().value();
-		auto message = e.code().message();
-		SocketException ex(SocketException::ErrorType::SystemError, message.c_str(), code);
-		hd->reportError(ex, *ip, port, "StartServer");
-		return false;
-	}
-
-	hd->isListening = true;
-	return true;
+	hd->start(port, ipv6, new boost::asio::ip::tcp::socket(hd->localService), true);
 }
 
 bool TCPServer::stop(uint32 waitTime){
@@ -1366,69 +1506,13 @@ bool TCPClient::setGettingCallBack(Socket::ClientGettingCall recvCB, void*pUser)
 
 bool TCPClient::connectServer(uint16 port, bool isAsync, ClientConnectCall asyncConnectCallBack, void* asyncConnectCallData){
 	auto hd = static_cast<TCPClient_Private*>(AA_HANDLE_MANAGER[this]);
-	if(hd->isListening){
-		SocketException ex(SocketException::ErrorType::SocketStatueError, "The server has connected");
-		hd->reportError(ex, *hd->addr, hd->port, "ConnectServer");
-		return false;
-	}
-	hd->isAsync = isAsync;
 	auto protocol = hd->addr->getIPVer() == 6 ? boost::asio::ip::tcp::v6() : boost::asio::ip::tcp::v4();
-	try{
-		hd->s.reset(new boost::asio::ip::tcp::socket(hd->localService, boost::asio::ip::tcp::endpoint(protocol, port)));
-		//hd->s->open(protocol);
-	} catch(boost::system::system_error e){
-		auto code = e.code().value();
-		auto msg = e.code().message();
-		SocketException ex(SocketException::ErrorType::SystemError, msg.c_str(), code);
-		hd->reportError(ex, *hd->addr, hd->port, "ConnectServer");
-		disconnectServer(10000);
-		return false;
-	}
-	if(isAsync){
-		hd->s->async_connect(boost::asio::ip::tcp::endpoint(toBoostAddr(*hd->addr), hd->port), std::bind(TCPClient_Private::onAsyncConnect, asyncConnectCallBack, asyncConnectCallData, this, std::placeholders::_1));
-	} else{
-		try{
-			hd->s->connect(boost::asio::ip::tcp::endpoint(toBoostAddr(*hd->addr), hd->port));
-		} catch(boost::system::system_error e){
-			auto code = e.code().value();
-			auto msg = e.code().message();
-			SocketException ex(SocketException::ErrorType::SystemError, msg.c_str(), code);
-			hd->reportError(ex, *hd->addr, hd->port, "ConnectServer");
-			disconnectServer(20000);
-			return false;
-		}
-		hd->onConnect(asyncConnectCallBack, asyncConnectCallData, this, boost::system::error_code());
-	}
-	return true;
+	return hd->connectServer(port, isAsync, asyncConnectCallBack, asyncConnectCallData, new boost::asio::ip::tcp::socket(hd->localService, boost::asio::ip::tcp::endpoint(protocol, port)), true);
 }
 
 bool TCPClient::disconnectServer(uint32 waitTime){
 	auto hd = static_cast<TCPClient_Private*>(AA_HANDLE_MANAGER[this]);
-	hd->mutex.lock();
-	if(hd->s != nullptr){
-		boost::system::error_code err;
-		if(hd->s->is_open()){
-			hd->s->shutdown(hd->s->shutdown_both, err);
-		}
-		if(!err)
-			hd->s->cancel(err);
-		if(!err){
-			hd->s->close(err);
-		}
-	}
-	hd->localService.stop();
-	if(hd->localServiceThread != nullptr && hd->localServiceThread->joinable() && hd->localServiceThread->get_id() != std::this_thread::get_id()){
-		hd->localServiceThread->join();
-	}
-	hd->isListening = false;
-	AA_SAFE_DEL(hd->addr);
-	AA_SAFE_DEL(hd->localAddr);
-	for(auto i = hd->buffer.begin(); i != hd->buffer.end(); ++i){
-		AA_SAFE_DELALL(i->second);
-	}
-	hd->s.reset();
-	hd->mutex.unlock();
-	return true;
+	return hd->disconnectServer(waitTime);
 }
 
 mac_uint TCPClient::send(const void * pBuffer, size_t len, bool isAsync){
@@ -1600,15 +1684,31 @@ bool UDPSilgle::stopListening(uint32 waitTime){
 bool UDPSilgle::isListening() const{
 	return static_cast<UDPSingle_Private*>(AA_HANDLE_MANAGER[this])->isListening;
 }
+TCPWebSocketServer::TCPWebSocketServer(int32 maxConnNum):TCPServer(maxConnNum){
+	auto hd = AA_HANDLE_MANAGER[this];
+	AA_HANDLE_MANAGER_WEBSOCKET.GetHandle(this, new WebSocket_Private(hd->localService));
+}
 
-SocketException::SocketException(ErrorType type, const char * message, int code)
-	: type(type), message(message), code(code){}
+TCPWebSocketServer::~TCPWebSocketServer(){
+	delete AA_HANDLE_MANAGER_WEBSOCKET.ReleaseHandle(this);
+}
 
-SocketException::SocketException(const SocketException & value)
-	: type(value.type), message(value.message), code(value.code){}
+TCPWebSocketClient::TCPWebSocketClient():TCPClient(){
+	auto hd = AA_HANDLE_MANAGER[this];
+	AA_HANDLE_MANAGER_WEBSOCKET.GetHandle(this, new WebSocket_Private(hd->localService));
 
-SocketException::SocketException(SocketException && moved)
-	: type(moved.type), message(moved.message), code(moved.code){}
+}
+
+TCPWebSocketClient::~TCPWebSocketClient(){
+	delete AA_HANDLE_MANAGER_WEBSOCKET.ReleaseHandle(this);
+}
+
+bool TCPWebSocketClient::connectServer(uint16 port, bool isAsync, ClientConnectCall asyncConnectCallBack, void * asyncConnectCallData){
+	auto hd = static_cast<TCPClient_Private*>(AA_HANDLE_MANAGER[this]);
+	auto webHd = AA_HANDLE_MANAGER_WEBSOCKET[this];
+	auto protocol = hd->addr->getIPVer() == 6 ? boost::asio::ip::tcp::v6() : boost::asio::ip::tcp::v4();
+	return hd->connectServer(port, isAsync, asyncConnectCallBack, asyncConnectCallData, &webHd->stream.next_layer(), false);
+}
 
 }
 
