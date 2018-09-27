@@ -386,11 +386,11 @@ public:
 	//停止服务器，关闭套接字和所有传入连接,输入参数为最大等待时间，超过此时限就强制关闭线程
 	virtual bool stop(uint32 waitTime) override;
 	//断开客户端
-	virtual bool givenUpClient(uint32 index) override;
-	virtual bool givenUpClient(const IPAddr& addr, uint16 port) override;
-	virtual bool givenUpAllClients() override;
+	//virtual bool givenUpClient(uint32 index) override;
+	//virtual bool givenUpClient(const IPAddr& addr, uint16 port) override;
+	//virtual bool givenUpAllClients() override;
 	//向指定索引的客户端发送数据
-	virtual mac_uint send(uint32 index, void*data, uint64 len, bool isAsync = true) override;
+	//virtual mac_uint send(uint32 index, void*data, uint64 len, bool isAsync = true) override;
 
 };
 
@@ -402,7 +402,7 @@ public:
 public:
 	virtual bool connectServer(uint16 port, bool isAsync, ClientConnectCall asyncConnectCallBack = nullptr, void* asyncConnectCallData = nullptr) override;
 	virtual bool disconnectServer(uint32 waitTime) override;
-	virtual mac_uint send(const void*pBuffer, size_t len, bool isAsync = false) override;
+	//virtual mac_uint send(const void*pBuffer, size_t len, bool isAsync = false) override;
 	
 };
 
