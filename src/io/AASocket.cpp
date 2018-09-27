@@ -823,10 +823,11 @@ std::shared_ptr < boost::beast::websocket::stream<boost::asio::ip::tcp::socket>>
 }
 
 void TCP_Socket_Datas::closeSocket(){
+	boost::system::error_code err;
 	if(s != nullptr && s->is_open())
-		s->close();
+		s->close(err);
 	if(webs != nullptr && webs->is_open())
-		webs->close(boost::beast::websocket::close_reason("Kicked out"));
+		webs->close(boost::beast::websocket::close_reason("Kicked out"), err);
 	s.reset();
 	webs.reset();
 }
@@ -1205,7 +1206,6 @@ bool TCPClient_Private::connectServer(uint16 localPort, bool async, TCPClient::C
 }
 
 bool TCPClient_Private::connectServer(uint16 localPort, bool async, bool needHandshake, TCPClient::ClientConnectCall asyncConnectCallBack, void * asyncConnectCallData){
-	port = localPort;
 	if(async){
 		getSocket()->async_connect(boost::asio::ip::tcp::endpoint(toBoostAddr(*addr), port), std::bind(&TCPClient_Private::onAsyncConnect, this, needHandshake, asyncConnectCallBack, asyncConnectCallData, std::placeholders::_1));
 	} else{
@@ -1234,11 +1234,12 @@ bool TCPClient_Private::disconnectServer(uint32 waitTime){
 		if(getSocket()->is_open()){
 			getSocket()->shutdown(getSocket()->shutdown_both, err);
 		}
-		if(!err)
-			getSocket()->cancel(err);
 		if(!err){
-			getSocket()->close(err);
+			getSocket()->cancel(err);
+		} else{
+			auto msg = err.message();
 		}
+		closeSocket();
 	}
 	localService.stop();
 	if(localServiceThread != nullptr && localServiceThread->joinable() && localServiceThread->get_id() != std::this_thread::get_id()){
@@ -1662,7 +1663,12 @@ bool TCPClient::setGettingCallBack(Socket::ClientGettingCall recvCB, void*pUser)
 bool TCPClient::connectServer(uint16 port, bool isAsync, ClientConnectCall asyncConnectCallBack, void* asyncConnectCallData){
 	auto hd = static_cast<TCPClient_Private*>(AA_HANDLE_MANAGER[this]);
 	auto protocol = hd->addr->getIPVer() == 6 ? boost::asio::ip::tcp::v6() : boost::asio::ip::tcp::v4();
-	return hd->connectServer(port, isAsync, asyncConnectCallBack, asyncConnectCallData, new boost::asio::ip::tcp::socket(hd->localService, boost::asio::ip::tcp::endpoint(protocol, port)));
+	try{
+		return hd->connectServer(port, isAsync, asyncConnectCallBack, asyncConnectCallData, new boost::asio::ip::tcp::socket(hd->localService, boost::asio::ip::tcp::endpoint(protocol, port)));
+	} catch(boost::system::system_error err){
+		auto msg = err.what();
+		return false;
+	}
 }
 
 bool TCPClient::disconnectServer(uint32 waitTime){
