@@ -195,7 +195,7 @@ public:
 	typedef std::function<void(const IPAddr&addr, uint16 port, uint8*data, mac_uint datalen, void*pUser)> UDPGettingCall;
 
 	//异步发送回执
-	typedef std::function<bool(mac_uint sendedSize, uint32 retriedTimes, uint32 index, void*sendedData, uint64 len, void* pUser)> SendingResp;
+	typedef std::function<bool(mac_uint sendedSize, uint32 retriedTimes, uint32 index, const void*sendedData, uint64 len, void* pUser)> SendingResp;
 	//socket连接及连通时错误信息回调, 参数为 异常体, 对方地址, 对方端口, 出错的函数名
 	typedef std::function<void(const SocketException&err, const IPAddr&addr, uint16 port, String functionName, void*pUser)> ErrorInfoCall;
 

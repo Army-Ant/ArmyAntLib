@@ -1840,8 +1840,12 @@ mac_uint TCPWebSocketServer::send(uint32 index, void * data, uint64 len, bool is
 	auto buffer = std::shared_ptr<uint8>(new uint8[len]);
 	memcpy(buffer.get(), data, len);
 	if(!isAsync){
-		auto ret = cl->second->getWebSocket()->write(boost::asio::buffer(buffer.get(), len));
+		boost::beast::error_code err;
+		auto ret = cl->second->getWebSocket()->write(boost::asio::buffer(buffer.get(), len), err);
 		hd->clientMutex.unlock();
+		if(err){
+			hd->reportError(SocketException(SocketException::ErrorType::SystemError, err.message().c_str(), err.value()), *cl->second->addr, cl->second->port, "TCPWebSocketServer::send");
+		}
 		return ret;
 	} else{
 		hd->asyncRespTimes = 0;
