@@ -1028,6 +1028,7 @@ void TCPServer_Private::onConnectUnshared(std::shared_ptr < boost::beast::websoc
 				auto cl = clients.find(index)->second;
 				if(connectCallBack == nullptr || connectCallBack(index, connetcCallData)){
 					auto buffer = std::shared_ptr<boost::beast::multi_buffer>(new boost::beast::multi_buffer(maxBufferLen));
+					s->binary(true);   // 必须设置为二进制, 才能传输二进制数据
 					s->async_read(*buffer, boost::asio::bind_executor(*clientData->strand, std::bind(&TCPServer_Private::onReceivedUnshared, this, s, index, std::placeholders::_1, std::placeholders::_2, buffer)));
 				} else{
 					givenUpClient(index);
@@ -1089,6 +1090,7 @@ void TCPServer_Private::onReceivedUnshared(std::shared_ptr < boost::beast::webso
 		}
 	}
 	buffer.reset(new boost::beast::multi_buffer(maxBufferLen));
+	s->binary(true);   // 必须设置为二进制, 才能传输二进制数据
 	s->async_read(*buffer, boost::asio::bind_executor(*client->strand, std::bind(&TCPServer_Private::onReceivedUnshared, this, s, index, std::placeholders::_1, std::placeholders::_2, buffer)));
 }
 
@@ -1841,6 +1843,7 @@ mac_uint TCPWebSocketServer::send(uint32 index, void * data, uint64 len, bool is
 	memcpy(buffer.get(), data, len);
 	if(!isAsync){
 		boost::beast::error_code err;
+		cl->second->getWebSocket()->binary(true);   // 必须设置为二进制, 才能传输二进制数据
 		auto ret = cl->second->getWebSocket()->write(boost::asio::buffer(buffer.get(), len), err);
 		hd->clientMutex.unlock();
 		if(err){
