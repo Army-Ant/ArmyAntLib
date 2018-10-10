@@ -1082,6 +1082,7 @@ void TCPServer_Private::onReceivedUnshared(std::shared_ptr < boost::beast::webso
 		SocketException e(SocketException::ErrorType::SystemError, m.c_str(), v);
 		reportError(e, *client->addr, client->port, "onReceived");
 		switch(v){
+			case boost::beast::errc::operation_not_permitted:
 			case boost::asio::error::eof:
 			case boost::asio::error::connection_aborted:
 			case boost::asio::error::connection_reset:
