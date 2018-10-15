@@ -124,22 +124,23 @@ echo $TarName
 
 # Building source
 cd ..
-source src/not_cpp/build_start.sh $debugType ../ $TarName $targetPlatform $targetBits $linkType
+source src/not_cpp/build_start.sh $debugType ./ $TarName $targetPlatform $targetBits $linkType
 cmake ./ -DCMAKE_BUILD_TYPE=$debugType -DTAR_MAC=$targetPlatform -DTAR_BITS=$targetBits -DTAR_NAME=$TarName -DLINK_TYPE=$linkType
 make
 
-if [[ $linkType == "dynamic" ]] && [ -d lib${TarName}.so ]; then
-    mv lib${TarName}.so ../bin
+if [[ $linkType == "dynamic" ]] && [ -f lib${TarName}.so ]; then
+    mv lib${TarName}.so bin/
 fi
-if [[ $linkType == "dynamic" ]] && [ -d lib${TarName}.dylib ]; then
-    mv lib${TarName}.dylib ../bin
+if [[ $linkType == "dynamic" ]] && [ -f lib${TarName}.dylib ]; then
+    mv lib${TarName}.dylib bin/
 fi
-if [[ $linkType == "static" ]] && [ -d lib${TarName}.o ]; then
-    mv lib${TarName}.o ../lib
+if [[ $linkType == "static" ]] && [ -f lib${TarName}.o ]; then
+    mv lib${TarName}.o lib/
 fi
-if [[ $linkType == "static" ]] && [ -d lib${TarName}.a ]; then
-    mv lib${TarName}.a ../bin
+if [[ $linkType == "static" ]] && [ -f lib${TarName}.a ]; then
+    mv lib${TarName}.a bin/
 fi
 
 source src/not_cpp/build_end.sh $debugType ../ $TarName $targetPlatform $targetBits $linkType
+
 cd proj

@@ -62,7 +62,7 @@ ELSE ()
 
 ENDIF ((CMAKE_SYSTEM_NAME MATCHES "Windows") OR (CMAKE_SYSTEM_NAME MATCHES "CYGWIN"))
 
-#include_directories(external/boost)
+include_directories(external/boost)
 
 if(CMAKE_BUILD_TYPE STREQUAL Release)
     add_definitions(

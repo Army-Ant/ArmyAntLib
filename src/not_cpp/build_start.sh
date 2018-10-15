@@ -28,12 +28,12 @@
 
 function ArmyAntLib_PreBuilt()
 {
-	if [ ! -d "$2bin" ]; then
-		mkdir $2bin
-	fi
-	if [ ! -d "$2lib" ]; then
-		mkdir $2lib
-	fi
+    if [ ! -d "$2bin" ]; then
+        mkdir $2bin
+    fi
+    if [ ! -d "$2lib" ]; then
+        mkdir $2lib
+    fi
     return 0;
 }
 
