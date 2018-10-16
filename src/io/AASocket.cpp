@@ -586,6 +586,9 @@ struct TCP_Socket_Datas{
 	IPAddr* localAddr = nullptr;	// 我方使用的ip地址
 	uint16 localport = 0;			// 我方使用的端口
 	boost::asio::strand<boost::asio::io_context::executor_type>* strand;
+#if defined OS_LINUX
+        std::mutex linuxWebsocketMutex;
+#endif
 
 private:
 	std::shared_ptr<boost::asio::ip::tcp::socket> s;	//boost的socket连接对象
@@ -600,7 +603,11 @@ struct Socket_Private{
 	Socket_Private();
 	virtual ~Socket_Private();
 
+#if defined OS_LINUX
+	void onTCPSendingResponse(uint32 index, std::shared_ptr<uint8> buffer, boost::asio::ip::tcp::socket*s, boost::system::error_code err, std::size_t size, uint64 realSize, std::mutex*mutex);
+#else
 	void onTCPSendingResponse(uint32 index, std::shared_ptr<uint8> buffer, boost::asio::ip::tcp::socket*s, boost::system::error_code err, std::size_t size, uint64 realSize);
+#endif
 
 	uint32 maxBufferLen = 65530;		// 接收数据的buffer的最大长度
 	boost::asio::io_service localService;
@@ -807,9 +814,21 @@ void TCP_Socket_Datas::closeSocket(bool noReset){
 	}
 }
 
-void Socket_Private::onTCPSendingResponse(uint32 index, std::shared_ptr<uint8>buffer, boost::asio::ip::tcp::socket*s, boost::system::error_code err, std::size_t size, uint64 realSize){
+void Socket_Private::onTCPSendingResponse(uint32 index, std::shared_ptr<uint8>buffer, boost::asio::ip::tcp::socket*s, boost::system::error_code err, std::size_t size, uint64 realSize
+#if defined OS_LINUX
+, std::mutex* mutex){
+	if(mutex != nullptr)
+	        mutex->unlock();
+	if(asyncResp != nullptr && asyncResp(size, asyncRespTimes++, index, buffer.get(), realSize, asyncRespUserData) && err){
+		if(mutex != nullptr)
+	        	mutex->lock();
+		s->async_write_some(boost::asio::buffer(buffer.get(), realSize), std::bind(&Socket_Private::onTCPSendingResponse, this, index, buffer, s, std::placeholders::_1, std::placeholders::_2, realSize, mutex));
+	}
+#else
+){
 	if(asyncResp != nullptr && asyncResp(size, asyncRespTimes++, index, buffer.get(), realSize, asyncRespUserData) && err)
 		s->async_write_some(boost::asio::buffer(buffer.get(), realSize), std::bind(&Socket_Private::onTCPSendingResponse, this, index, buffer, s, std::placeholders::_1, std::placeholders::_2, realSize));
+#endif
 }
 
 Socket_Private::Socket_Private() :localService(){
@@ -1542,7 +1561,11 @@ mac_uint TCPServer::send(uint32 index, void * data, uint64 len, bool isAsync){
 		return ret;
 	} else{
 		hd->asyncRespTimes = 0;
+#ifdef OS_LINUX
+		cl->second->getSocket()->async_write_some(boost::asio::buffer(buffer.get(), len), std::bind(&Socket_Private::onTCPSendingResponse, AA_HANDLE_MANAGER[this], index, buffer, cl->second->getSocket(), std::placeholders::_1, std::placeholders::_2, len, nullptr));
+#else
 		cl->second->getSocket()->async_write_some(boost::asio::buffer(buffer.get(), len), std::bind(&Socket_Private::onTCPSendingResponse, AA_HANDLE_MANAGER[this], index, buffer, cl->second->getSocket(), std::placeholders::_1, std::placeholders::_2, len));
+#endif
 		hd->clientMutex.unlock();
 		return 0;
 	}
@@ -1670,7 +1693,11 @@ mac_uint TCPClient::send(const void * pBuffer, size_t len, bool isAsync){
 		return ret;
 	} else{
 		hd->asyncRespTimes = 0;
+#ifdef OS_LINUX
+		hd->getSocket()->async_write_some(boost::asio::buffer(buffer.get(), len), std::bind(&Socket_Private::onTCPSendingResponse, AA_HANDLE_MANAGER[this], 0, buffer, hd->getSocket(), std::placeholders::_1, std::placeholders::_2, len, nullptr));
+#else
 		hd->getSocket()->async_write_some(boost::asio::buffer(buffer.get(), len), std::bind(&Socket_Private::onTCPSendingResponse, AA_HANDLE_MANAGER[this], 0, buffer, hd->getSocket(), std::placeholders::_1, std::placeholders::_2, len));
+#endif
 		return len;
 	}
 }
@@ -1853,7 +1880,12 @@ mac_uint TCPWebSocketServer::send(uint32 index, void * data, uint64 len, bool is
 		return ret;
 	} else{
 		hd->asyncRespTimes = 0;
+#if defined OS_LINUX
+                cl->second->linuxWebsocketMutex.lock();
+		cl->second->getWebSocket()->async_write(boost::asio::buffer(buffer.get(), len), std::bind(&Socket_Private::onTCPSendingResponse, AA_HANDLE_MANAGER[this], index, buffer, cl->second->getSocket(), std::placeholders::_1, std::placeholders::_2, len, &cl->second->linuxWebsocketMutex));
+#else
 		cl->second->getWebSocket()->async_write(boost::asio::buffer(buffer.get(), len), std::bind(&Socket_Private::onTCPSendingResponse, AA_HANDLE_MANAGER[this], index, buffer, cl->second->getSocket(), std::placeholders::_1, std::placeholders::_2, len));
+#endif
 		hd->clientMutex.unlock();
 		return 0;
 	}
@@ -1906,7 +1938,12 @@ mac_uint TCPWebSocketClient::send(const void * pBuffer, size_t len, bool isAsync
 		return ret;
 	} else{
 		hd->asyncRespTimes = 0;
+#if defined OS_LINUX
+                hd->linuxWebsocketMutex.lock();
+		hd->getWebSocket()->async_write(boost::asio::buffer(buffer.get(), len), std::bind(&Socket_Private::onTCPSendingResponse, AA_HANDLE_MANAGER[this], 0, buffer, hd->getSocket(), std::placeholders::_1, std::placeholders::_2, len, &hd->linuxWebsocketMutex));
+#else
 		hd->getWebSocket()->async_write(boost::asio::buffer(buffer.get(), len), std::bind(&Socket_Private::onTCPSendingResponse, AA_HANDLE_MANAGER[this], 0, buffer, hd->getSocket(), std::placeholders::_1, std::placeholders::_2, len));
+#endif
 		return len;
 	}
 }
