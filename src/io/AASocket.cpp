@@ -1078,6 +1078,7 @@ void TCPServer_Private::onReceivedShared(std::shared_ptr<boost::asio::ip::tcp::s
 			case boost::asio::error::connection_aborted:
 			case boost::asio::error::connection_reset:
 				lostCallBack(index, lostCallData);
+				givenUpClient(index);
 				return;
 		}
 	}
@@ -1106,6 +1107,7 @@ void TCPServer_Private::onReceivedUnshared(std::shared_ptr < boost::beast::webso
 			case boost::asio::error::connection_aborted:
 			case boost::asio::error::connection_reset:
 				lostCallBack(index, lostCallData);
+				givenUpClient(index);
 				return;
 		}
 	}
