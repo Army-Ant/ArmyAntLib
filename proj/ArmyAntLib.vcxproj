@@ -657,6 +657,7 @@
     <ClInclude Include="..\inc\AASqlStructs.h" />
     <ClInclude Include="..\inc\AAStateMachine.hpp" />
     <ClInclude Include="..\inc\AAString.h" />
+    <ClInclude Include="..\inc\AATimeUtilities.h" />
     <ClInclude Include="..\inc\AATree.hpp" />
     <ClInclude Include="..\inc\AATripleMap.hpp" />
     <ClInclude Include="..\inc\AA_end.h" />
@@ -685,6 +686,7 @@
     <ClCompile Include="..\src\io\C_AAStream.cpp" />
     <ClCompile Include="..\src\tool\AALog.cpp" />
     <ClCompile Include="..\src\tool\AAString.cpp" />
+    <ClCompile Include="..\src\tool\AATimeUtilities.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\.gitignore" />

@@ -20,59 +20,65 @@
  * 请在特定限制或语言管理权限下阅读协议
  */
 
-#ifndef AA_LOG_H_2017_5_25
-#define AA_LOG_H_2017_5_25
+#ifndef AALOG_H_20180524
+#define AALOG_H_20180524
 
-#include "AAString.h"
+#include <iostream>
+#include "AADefine.h"
+#include "AA_start.h"
 
 namespace ArmyAnt{
 
-
-
-/*	* @ author			: Jason
-	* @ date			: 5/25/2017
-	* @ last update	    : 5/25/2017
-	* @ summary			: 用于记录C++日志，标记时间和所在文件、行号，将日志输出到文件以及控制台，以互斥锁方式保证线程安全
-	* @ uncompleted		:
-	* @ untested		: 所有功能（打开文件，输出日志，输出到控制台）
-	* @ issue			:
-	*/
-
-class ARMYANTLIB_API LoggerBase {
+class ARMYANTLIB_API Logger{
 public:
-    LoggerBase();
-    ~LoggerBase();
+	enum class AlertLevel : uint8{
+		Verbose = 0,
+		Debug = 1,
+		Info = 2,
+		Import = 3,
+		Warning = 4,
+		Error = 5,
+		Fatal = 6
+	};
+	static const char*convertLevelToString(AlertLevel level);
 
 public:
-    struct Contents{
-        bool datetime = true;
-        bool tag = true;
-        bool function = true;
-        bool fileAndLine = false;
-        bool toConsole = true;
-        bool toConsoleIfFileFailed = true;
-        bool warningIfFileFailed = false;
-        String lineEnding = "\r\n";
-
-        static const Contents& defaultSetting();
-    };
+	Logger(const char* logFilePath = nullptr);
+	~Logger();
 
 public:
-    bool initLog(String filepath, const Contents& setting = Contents::defaultSetting());
-    bool pushLog(String date, String time, String function, String file, String line, String tag, String level, String log);
+	// Output log to std::cout
+	void setConsoleLevel(AlertLevel level = AlertLevel::Import);
+	AlertLevel getConsoleLevel()const;
 
-    AA_FORBID_ASSGN_OPR(LoggerBase);
-    AA_FORBID_COPY_CTOR(LoggerBase);
+	// Output log to a disk file
+	bool setLogFile(const char* path);
+	const char*getLogFilePath()const;
+	void setFileLevel(AlertLevel level = AlertLevel::Verbose);
+	AlertLevel getFileLevel()const;
+
+	// Output log to a user-defined ostream
+	void setUserStream(std::ostream* stream);
+	std::ostream*getUserStream();
+	void setUserStreamLevel(AlertLevel level = AlertLevel::Debug);
+	AlertLevel getUserStreamLevel()const;
+
+public:
+	bool pushLog(const char* content, AlertLevel level, const char*tag = nullptr);
+	bool pushLogOnlyInConsole(const char* content, AlertLevel level, const char*tag = nullptr);
+	bool pushLogOnlyInFile(const char* content, AlertLevel level, const char*tag = nullptr);
+
+protected:
+	bool pushLogToConsole(const char* wholeContent);
+	bool pushLogToFile(const char* wholeContent);
+	bool pushLogToUserStream(const char* wholeContent);
+
+
+	AA_FORBID_COPY_CTOR(Logger);
+	AA_FORBID_ASSGN_OPR(Logger);
 };
 
-}
+} // namespace ArmyAntServer 
 
-#if defined __FUNCTION__
-#define AA_LOG(logger, tag, level, log) logger.pushLog(__DATE__, __TIME__, __FUNCTION__, __FILE__, __LINE__, tag, level, log);
-#elif defined __FUNC__
-#define AA_LOG(logger, tag, level, log) logger.pushLog(__DATE__, __TIME__, __FUNC__, __FILE__, __LINE__, tag, level, log);
-#else
-#define AA_LOG(logger, tag, level, log) logger.pushLog(__DATE__, __TIME__, __func__, __FILE__, __LINE__, tag, level, log);
-#endif // defined __FUNCTION__
 
-#endif //AA_LOG_H_2017_5_25
+#endif // AALOG_H_20180524

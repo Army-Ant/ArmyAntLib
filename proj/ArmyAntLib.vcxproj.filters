@@ -112,6 +112,9 @@
     <ClInclude Include="..\inc\AALog.h">
       <Filter>tool</Filter>
     </ClInclude>
+    <ClInclude Include="..\inc\AATimeUtilities.h">
+      <Filter>tool</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\src\base\ArmyAntLib.cpp">
@@ -154,6 +157,9 @@
       <Filter>io</Filter>
     </ClCompile>
     <ClCompile Include="..\src\tool\AALog.cpp">
+      <Filter>tool</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\tool\AATimeUtilities.cpp">
       <Filter>tool</Filter>
     </ClCompile>
   </ItemGroup>
