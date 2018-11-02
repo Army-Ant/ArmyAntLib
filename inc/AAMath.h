@@ -23,6 +23,8 @@
 #ifndef AA_MATH_H_2016_12_28
 #define AA_MATH_H_2016_12_28
 
+#include "AA_start.h"
+#include "AADefine.h"
 
 namespace ArmyAnt{
 
@@ -35,7 +37,7 @@ enum class CoordinateType{
 	Spherical
 };
 
-
+int32 ARMYANTLIB_API getRandomInt32Number(int32 begin, int32 end);
 
 }
 

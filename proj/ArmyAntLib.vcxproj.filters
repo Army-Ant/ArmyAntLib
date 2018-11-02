@@ -162,6 +162,9 @@
     <ClCompile Include="..\src\tool\AATimeUtilities.cpp">
       <Filter>tool</Filter>
     </ClCompile>
+    <ClCompile Include="..\src\mathematic\AAMath.cpp">
+      <Filter>mathematic</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="data">

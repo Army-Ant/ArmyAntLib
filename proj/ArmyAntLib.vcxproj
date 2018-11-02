@@ -684,6 +684,7 @@
     <ClCompile Include="..\src\io\AASocket.cpp" />
     <ClCompile Include="..\src\io\AASqlClient.cpp" />
     <ClCompile Include="..\src\io\C_AAStream.cpp" />
+    <ClCompile Include="..\src\mathematic\AAMath.cpp" />
     <ClCompile Include="..\src\tool\AALog.cpp" />
     <ClCompile Include="..\src\tool\AAString.cpp" />
     <ClCompile Include="..\src\tool\AATimeUtilities.cpp" />
