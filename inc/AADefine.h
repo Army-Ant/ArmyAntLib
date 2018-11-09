@@ -27,6 +27,7 @@
 #include "AAFragment.h"
 
 #ifdef OS_BSD
+// Xcode编译发现需要此头
 #include <cstddef>
 #endif
 

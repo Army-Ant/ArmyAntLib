@@ -159,13 +159,6 @@ public:
 
 namespace Utils {
 
-// log utilities
-// TODO: 应当专门建立Log类进行Log输出
-namespace Log{
-ARMYANTLIB_API void Log_Debug(const char* msg);
-ARMYANTLIB_API void Log_Error(const char* msg);
-}
-
 // math utilities
 // TODO: 在Math类工具完成时，应当将这些函数转移到Math模块
 namespace Math{

@@ -64,16 +64,18 @@ public:
 
 	/*	Create a node with value and tag
 	 *	根据键值对创建节点
-	 *	@ param = "tag" :	The tag of this node
-							节点的标签
+	 *	@ param = "parent":The parent node of this node
+							节点的父节点
 	 *	@ param = "element":The value of this node
 							节点的值内容
+	 *	@ param = "tag" :	The tag of this node
+							节点的标签
 	 *	@ param = "weight":	The weight of this node, default value is 1
 							节点的权重, 可用默认值1
 	 */
 	GraphNode(Digraph<T_Val, T_Tag, T_Weight>* parent, T_Val element, T_Tag tag, T_Weight weight = T_Weight(1));
 
-	/*	Copied from another node
+	/*	Copy from another node
 		复制节点
 	 *	@ param = "value" :	The node this copied from
 							要复制的源节点

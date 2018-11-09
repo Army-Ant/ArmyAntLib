@@ -60,9 +60,8 @@ namespace ArmyAnt {
 
 inline const auto&importArmyAnt() 
 {
-	class ArmyAnt 
+	struct ArmyAnt 
 	{
-	public: 
 		ArmyAnt()
 		{
 			ptr = dlopen("libArmyAnt" AA_LIB_TYPE AA_IS_DEBUG AA_TARGET_MACHINE ".so", RTLD_NOW);
@@ -71,11 +70,10 @@ inline const auto&importArmyAnt()
 		{
 			dlclose(ptr);
 		}
-	private:
 		void*ptr = nullptr;
 	};
 	static ArmyAnt ret; 
-	return ret; 
+	return ret.ptr; 
 }; 
 
 }
