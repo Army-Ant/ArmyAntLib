@@ -166,8 +166,8 @@ Temporary Items
 .apdisk
 
 # Xcode userdata settings
-*.xcodeproj/xcuserdata
-*.xcworkspace/xcuserdata
+/proj/*.xcodeproj/xcuserdata
+/proj/*.xcworkspace/xcuserdata
 
 
 # Windows
