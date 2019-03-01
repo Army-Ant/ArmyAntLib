@@ -92,6 +92,10 @@
 		3E12BDCD1DE5484200B6195A /* AASocket.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E12BD2D1DE5357400B6195A /* AASocket.h */; };
 		3E12BDCE1DE5484200B6195A /* C_AAStream.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E12BD351DE5357400B6195A /* C_AAStream.h */; };
 		3E12BDCF1DE5484200B6195A /* AAClassPrivateHandle.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 3E12BD1E1DE5357400B6195A /* AAClassPrivateHandle.hpp */; };
+		785083282228DEF80009DB08 /* AATimeUtilities.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 785083272228DEF80009DB08 /* AATimeUtilities.cpp */; };
+		7850832A2228DF2E0009DB08 /* AAMath.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 785083292228DF2E0009DB08 /* AAMath.cpp */; };
+		7850832D2228DF420009DB08 /* AASqlStructs.h in Headers */ = {isa = PBXBuildFile; fileRef = 7850832B2228DF420009DB08 /* AASqlStructs.h */; };
+		7850832E2228DF420009DB08 /* AATimeUtilities.h in Headers */ = {isa = PBXBuildFile; fileRef = 7850832C2228DF420009DB08 /* AATimeUtilities.h */; };
 		9650CE0E2106C1D000100FBF /* AASqlClient.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9650CE0D2106C1D000100FBF /* AASqlClient.cpp */; };
 		9650CE0F2106C1D000100FBF /* AASqlClient.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9650CE0D2106C1D000100FBF /* AASqlClient.cpp */; };
 		9650CE102106C1D000100FBF /* AASqlClient.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9650CE0D2106C1D000100FBF /* AASqlClient.cpp */; };
@@ -105,7 +109,6 @@
 		9650CE1C2106C23000100FBF /* AAMath.h in Headers */ = {isa = PBXBuildFile; fileRef = 9650CE1B2106C23000100FBF /* AAMath.h */; };
 		9650CE1D2106C23000100FBF /* AAMath.h in Headers */ = {isa = PBXBuildFile; fileRef = 9650CE1B2106C23000100FBF /* AAMath.h */; };
 		9650CE1F2106C29000100FBF /* AAMathStructs.h in Headers */ = {isa = PBXBuildFile; fileRef = 9650CE1E2106C29000100FBF /* AAMathStructs.h */; };
-		9650CE202106C29000100FBF /* AAMathStructs.h in Headers */ = {isa = PBXBuildFile; fileRef = 9650CE1E2106C29000100FBF /* AAMathStructs.h */; };
 		C33E281C1ECAA24900FD7958 /* AASqlStructs.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C33E281B1ECAA24900FD7958 /* AASqlStructs.cpp */; };
 		C33E281D1ECAA24900FD7958 /* AASqlStructs.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C33E281B1ECAA24900FD7958 /* AASqlStructs.cpp */; };
 		C33E281E1ECAA24900FD7958 /* AASqlStructs.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C33E281B1ECAA24900FD7958 /* AASqlStructs.cpp */; };
@@ -259,6 +262,13 @@
 		3E38EE331DE6824100E1F22D /* libboost_wave.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libboost_wave.dylib; path = ../external/boost/stage/lib/libboost_wave.dylib; sourceTree = "<group>"; };
 		3E38EE361DE6824100E1F22D /* libboost_wserialization.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libboost_wserialization.a; path = ../external/boost/stage/lib/libboost_wserialization.a; sourceTree = "<group>"; };
 		3E38EE371DE6824100E1F22D /* libboost_wserialization.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libboost_wserialization.dylib; path = ../external/boost/stage/lib/libboost_wserialization.dylib; sourceTree = "<group>"; };
+		785083232228DE330009DB08 /* libArmyAntLib_mac_d.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libArmyAntLib_mac_d.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		785083242228DE330009DB08 /* libArmyAntLib_ios_d.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libArmyAntLib_ios_d.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		785083252228DE330009DB08 /* libArmyAntLib_static_d.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libArmyAntLib_static_d.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		785083272228DEF80009DB08 /* AATimeUtilities.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = AATimeUtilities.cpp; path = ../src/tool/AATimeUtilities.cpp; sourceTree = "<group>"; };
+		785083292228DF2E0009DB08 /* AAMath.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = AAMath.cpp; path = ../src/mathematic/AAMath.cpp; sourceTree = "<group>"; };
+		7850832B2228DF420009DB08 /* AASqlStructs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AASqlStructs.h; path = ../inc/AASqlStructs.h; sourceTree = "<group>"; };
+		7850832C2228DF420009DB08 /* AATimeUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AATimeUtilities.h; path = ../inc/AATimeUtilities.h; sourceTree = "<group>"; };
 		9650CE0B2106C15C00100FBF /* make_all.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; name = make_all.sh; path = ../make_all.sh; sourceTree = "<group>"; };
 		9650CE0C2106C16400100FBF /* CMakeLists.txt */ = {isa = PBXFileReference; lastKnownFileType = text; name = CMakeLists.txt; path = ../CMakeLists.txt; sourceTree = "<group>"; };
 		9650CE0D2106C1D000100FBF /* AASqlClient.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = AASqlClient.cpp; path = ../src/io/AASqlClient.cpp; sourceTree = "<group>"; };
@@ -280,9 +290,6 @@
 		C33E282A1ECAA30000FD7958 /* build_start.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; name = build_start.sh; path = ../src/not_cpp/build_start.sh; sourceTree = "<group>"; };
 		C39DB5EA1ECAF403002A11E9 /* AAJson.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AAJson.h; path = ../inc/AAJson.h; sourceTree = "<group>"; };
 		C39DB5ED1ECAF499002A11E9 /* AAString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AAString.h; path = ../inc/AAString.h; sourceTree = "<group>"; };
-		C3EBA1551ED53D6E00647939 /* libArmyAntLib_mac.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; name = libArmyAntLib_mac.dylib; path = "/Users/jason/github/Army-Ant/ArmyAntLib/proj/../bin/libArmyAntLib_mac.dylib"; sourceTree = "<absolute>"; };
-		C3EBA1561ED53D6E00647939 /* libArmyAntLib_ios.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = libArmyAntLib_ios.a; path = "/Users/jason/github/Army-Ant/ArmyAntLib/proj/../bin/libArmyAntLib_ios.a"; sourceTree = "<absolute>"; };
-		C3EBA1571ED53D6E00647939 /* libArmyAntLib_static.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = libArmyAntLib_static.a; path = "/Users/jason/github/Army-Ant/ArmyAntLib/proj/../bin/libArmyAntLib_static.a"; sourceTree = "<absolute>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -316,6 +323,9 @@
 			children = (
 				3E38EEC01DE6830600E1F22D /* others */,
 				3E38EEBF1DE682F700E1F22D /* source */,
+				785083232228DE330009DB08 /* libArmyAntLib_mac_d.dylib */,
+				785083242228DE330009DB08 /* libArmyAntLib_ios_d.a */,
+				785083252228DE330009DB08 /* libArmyAntLib_static_d.a */,
 			);
 			sourceTree = "<group>";
 		};
@@ -353,6 +363,7 @@
 		3E12BD391DE536A300B6195A /* io */ = {
 			isa = PBXGroup;
 			children = (
+				7850832B2228DF420009DB08 /* AASqlStructs.h */,
 				3E12BD231DE5357400B6195A /* AAIStream_Com.h */,
 				3E12BD101DE5355600B6195A /* AAIStream_File.cpp */,
 				3E12BD241DE5357400B6195A /* AAIStream_File.h */,
@@ -394,7 +405,8 @@
 		3E12BD3B1DE536E700B6195A /* tool */ = {
 			isa = PBXGroup;
 			children = (
-				9650CE1E2106C29000100FBF /* AAMathStructs.h */,
+				7850832C2228DF420009DB08 /* AATimeUtilities.h */,
+				785083272228DEF80009DB08 /* AATimeUtilities.cpp */,
 				9650CE152106C1FC00100FBF /* AALog.h */,
 				9650CE112106C1EB00100FBF /* AALog.cpp */,
 				C39DB5ED1ECAF499002A11E9 /* AAString.h */,
@@ -495,6 +507,7 @@
 		3E38EEBF1DE682F700E1F22D /* source */ = {
 			isa = PBXGroup;
 			children = (
+				785083262228DED60009DB08 /* mathematic */,
 				3E12BD371DE535C000B6195A /* _base */,
 				3E12BD3A1DE536A900B6195A /* algorithm */,
 				3E12BD381DE5369B00B6195A /* data */,
@@ -539,6 +552,15 @@
 			name = _documents;
 			sourceTree = "<group>";
 		};
+		785083262228DED60009DB08 /* mathematic */ = {
+			isa = PBXGroup;
+			children = (
+				9650CE1E2106C29000100FBF /* AAMathStructs.h */,
+				785083292228DF2E0009DB08 /* AAMath.cpp */,
+			);
+			name = mathematic;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -548,6 +570,7 @@
 			files = (
 				3E12BD811DE5454500B6195A /* AA_end.h in Headers */,
 				9650CE162106C1FC00100FBF /* AALog.h in Headers */,
+				7850832D2228DF420009DB08 /* AASqlStructs.h in Headers */,
 				3E12BD821DE5454500B6195A /* AA_start.h in Headers */,
 				C39DB5EB1ECAF403002A11E9 /* AAJson.h in Headers */,
 				3E12BD831DE5454500B6195A /* AADefine.h in Headers */,
@@ -581,6 +604,7 @@
 				3E12BD9B1DE5454500B6195A /* AASocket.h in Headers */,
 				3E12BD9C1DE5454500B6195A /* C_AAStream.h in Headers */,
 				3E12BD9D1DE5454500B6195A /* AAClassPrivateHandle.hpp in Headers */,
+				7850832E2228DF420009DB08 /* AATimeUtilities.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -612,7 +636,6 @@
 				3E12BDC61DE5484200B6195A /* AAConfiguration.h in Headers */,
 				9650CE1D2106C23000100FBF /* AAMath.h in Headers */,
 				C39DB5EF1ECAF499002A11E9 /* AAString.h in Headers */,
-				9650CE202106C29000100FBF /* AAMathStructs.h in Headers */,
 				3E12BDC71DE5484200B6195A /* AAIStream_Com.h in Headers */,
 				3E12BDC81DE5484200B6195A /* AAIStream_File.h in Headers */,
 				3E12BDC91DE5484200B6195A /* AAIStream_Memory.h in Headers */,
@@ -644,7 +667,7 @@
 			);
 			name = ArmyAntLib_mac;
 			productName = ArmyAntLib;
-			productReference = C3EBA1551ED53D6E00647939 /* libArmyAntLib_mac.dylib */;
+			productReference = 785083232228DE330009DB08 /* libArmyAntLib_mac_d.dylib */;
 			productType = "com.apple.product-type.library.dynamic";
 		};
 		3E12BD5D1DE53C0C00B6195A /* ArmyAntLib_ios */ = {
@@ -661,7 +684,7 @@
 			);
 			name = ArmyAntLib_ios;
 			productName = ArmyAntLib_ios;
-			productReference = C3EBA1561ED53D6E00647939 /* libArmyAntLib_ios.a */;
+			productReference = 785083242228DE330009DB08 /* libArmyAntLib_ios_d.a */;
 			productType = "com.apple.product-type.library.static";
 		};
 		3E12BD6A1DE53C5000B6195A /* ArmyAntLib_static */ = {
@@ -678,7 +701,7 @@
 			);
 			name = ArmyAntLib_static;
 			productName = ArmyAntLib_static;
-			productReference = C3EBA1571ED53D6E00647939 /* libArmyAntLib_static.a */;
+			productReference = 785083252228DE330009DB08 /* libArmyAntLib_static_d.a */;
 			productType = "com.apple.product-type.library.static";
 		};
 /* End PBXNativeTarget section */
@@ -731,8 +754,10 @@
 				3E12BD7A1DE544AB00B6195A /* AAIStream_File.cpp in Sources */,
 				C33E28201ECAA28500FD7958 /* AAJson.cpp in Sources */,
 				9650CE0E2106C1D000100FBF /* AASqlClient.cpp in Sources */,
+				785083282228DEF80009DB08 /* AATimeUtilities.cpp in Sources */,
 				C33E28241ECAA2B300FD7958 /* AAString.cpp in Sources */,
 				3E12BD7B1DE544AB00B6195A /* AAIStream_Memory.cpp in Sources */,
+				7850832A2228DF2E0009DB08 /* AAMath.cpp in Sources */,
 				3E12BD7C1DE544AB00B6195A /* AAIStream.cpp in Sources */,
 				3E12BD7D1DE544AB00B6195A /* AASocket.cpp in Sources */,
 				3E12BD7E1DE544AB00B6195A /* C_AAStream.cpp in Sources */,

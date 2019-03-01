@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2015 ArmyAnt
  * 版权所有 (c) 2015 ArmyAnt
  *
@@ -397,7 +397,7 @@ bool String::replace(char src, const char * tar){
 }
 
 void String::resetValue(){
-#ifdef _DEBUG
+#if defined _DEBUG && defined OS_WINDOWS
 	v = AA_HANDLE_MANAGER[this]->c_str();
 #endif
 }

@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2015 ArmyAnt
  * 版权所有 (c) 2015 ArmyAnt
  *
@@ -39,8 +39,9 @@ namespace ArmyAnt {
 
 static const char* sg_spaceCleans[] = {"\r","\n"," ","\t"};
 static const int sg_spaceCleanLen = 4;
-static const JsonException sg_invalidNumber("This is an invalid number value !");
-static const JsonException sg_wrongFormat("");
+static inline JsonException getWrongFormatException(){
+    return JsonException("");
+};
 
 struct JO_Private {
 	EJsonValueType type;
@@ -86,7 +87,7 @@ public:
 		str.clearBothSides(sg_spaceCleans, sg_spaceCleanLen);
 		char isSingleKey = str[0];
 		if (str[0] != '"' && str[0] != '\'')
-			throw sg_wrongFormat;
+			throw getWrongFormatException();
 		String key = "";
 		size_t count = 1;
 		while (count < str.size()) {
@@ -98,7 +99,7 @@ public:
         str.clearBothSides(sg_spaceCleans, sg_spaceCleanLen);
         str.subString(int(count + 1));
 		if (str[0] != ':')
-			throw sg_wrongFormat;
+			throw getWrongFormatException();
         str.subString(1);
         str.clearBothSides(sg_spaceCleans, sg_spaceCleanLen);
 		return std::make_pair(key, str);
@@ -135,7 +136,7 @@ public:
 			else if (str[i] == '}' && !isInSingleString && !isInDoubleString)
 				--deepInObject;
 			if (deepInArray < 0 || deepInObject < 0)
-				throw sg_wrongFormat;
+				throw getWrongFormatException();
 			if (deepInArray == 0 && deepInObject == 0 && !isInSingleString && !isInDoubleString && str[i] == ',') {
 				ret.push_back(tmp);
 				tmp = "";
