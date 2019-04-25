@@ -1,19 +1,12 @@
-:Start
-if exist boost (
-    @echo "The boost has been exist!"
-	goto End
-)
-
 @echo "Clone submodules!"
 cd ..
-git submodule update --init --progress
+git submodule update --init --progress --recursive
 
 @echo "Clone submodules for boost"
 cd external/boost
-git submodule update --init --progress
+git checkout master
+git submodule update --init --progress --recursive
 
 @echo "Build boost library"
-./bootstrap.bat
-./bjam stage
-
-:End
+call bootstrap.bat
+call bjam stage

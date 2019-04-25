@@ -319,7 +319,9 @@ public:
 	//以下是连接和实际收发操作
 
 	//连接服务器
-	virtual bool connectServer(uint16 port, bool isAsync, ClientConnectCall asyncConnectCallBack = nullptr, void* asyncConnectCallData = nullptr);
+    bool connectServer(bool isAsync, ClientConnectCall asyncConnectCallBack = nullptr, void* asyncConnectCallData = nullptr);
+    //以指定的本地端口号连接服务器
+    virtual bool connectServer(uint16 port, bool isAsync, ClientConnectCall asyncConnectCallBack = nullptr, void* asyncConnectCallData = nullptr);
 	//断开连接
 	virtual bool disconnectServer(uint32 waitTime);
 	//向服务器发送消息
@@ -400,7 +402,8 @@ public:
 	virtual ~TCPWebSocketClient();
 
 public:
-	virtual bool connectServer(uint16 port, bool isAsync, ClientConnectCall asyncConnectCallBack = nullptr, void* asyncConnectCallData = nullptr) override;
+    // 连接到websocket服务器, 第一个参数port无效, 因为websocket客户端不能指定本地端口
+    virtual bool connectServer(uint16 port, bool isAsync, ClientConnectCall asyncConnectCallBack = nullptr, void* asyncConnectCallData = nullptr) override;
 	virtual bool disconnectServer(uint32 waitTime) override;
 	virtual mac_uint send(const void*pBuffer, size_t len, bool isAsync = false) override;
 	
