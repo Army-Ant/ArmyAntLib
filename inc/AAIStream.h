@@ -79,6 +79,8 @@ public:
 
 public:
 
+    static bool IsLittleEnding();
+
 	/**	根据url创建流，需要手动释放内存。
 		url由约定俗成的格式组成，具体规则如下：
 		file:// 开头，代表磁盘文件，后跟文件路径
