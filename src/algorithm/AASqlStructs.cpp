@@ -518,6 +518,7 @@ SqlClause::SqlClause(const String & str)
 	:type(SqlClauseType::Null)
 {
 	AA_SQL_CLAUSE_HANDLE_MANAGER.GetHandle(this);
+    AAAssert(pushExpress(SqlExpress(str)));
 }
 
 SqlClause::~SqlClause()
