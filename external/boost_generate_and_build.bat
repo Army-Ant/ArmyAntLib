@@ -9,4 +9,4 @@ git submodule update --init --progress --recursive
 
 @echo "Build boost library"
 call bootstrap.bat
-call bjam stage
+call b2 --build-type=complete

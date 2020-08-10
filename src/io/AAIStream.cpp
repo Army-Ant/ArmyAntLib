@@ -24,7 +24,7 @@
 
 #include "../../inc/AAIStream.h"
 #include "AAIStream_Private.hxx"
-#include <boost/spirit/home/support/detail/endian/endian.hpp>
+#include <boost/spirit/home/support/detail/endian.hpp>
 
 #define AA_HANDLE_MANAGER ClassPrivateHandleManager<IStream, IStream_Private>::getInstance()
 
@@ -88,9 +88,9 @@ StaticStream * StaticStream::GetStream(mac_uint handle)
 	return const_cast<StaticStream*>(static_cast<const StaticStream*>(ret));
 }
 
-bool IStream::IsLittleEnding(){
-    int32 a = 0x11100100;
-    return boost::spirit::detail::load_little_endian<int32, 4>(&a) == a;
+bool IStream::IsLittleEnding() {
+	int32 a = 0x11100100;
+	return boost::endian::endian_load<int32, 4, boost::endian::order::little>(reinterpret_cast<const unsigned char*>(&a)) == a;
 }
 
 IStream * IStream::GetStream(mac_uint handle)

@@ -738,7 +738,7 @@ struct UDPSingle_Private : public Socket_Private{
 TCP_Socket_Datas::TCP_Socket_Datas() :webs(nullptr), s(nullptr), addr(nullptr), port(0), localAddr(nullptr), localport(0), strand(nullptr){}
 
 TCP_Socket_Datas::TCP_Socket_Datas(std::shared_ptr < boost::beast::websocket::stream<boost::asio::ip::tcp::socket>> webs, const IPAddr * addr, uint16 port, const IPAddr * localAddr, uint16 localport)
-	:webs(webs), s(nullptr), addr(IPAddr::clone(*addr)), port(port), localAddr(IPAddr::clone(*localAddr)), localport(localport), strand(new boost::asio::strand<boost::asio::executor>(webs->get_executor())){}
+	:webs(webs), s(nullptr), addr(IPAddr::clone(*addr)), port(port), localAddr(IPAddr::clone(*localAddr)), localport(localport), strand(new boost::asio::strand<boost::asio::executor>(*webs->get_executor().target<boost::asio::executor>())){}
 
 TCP_Socket_Datas::TCP_Socket_Datas(std::shared_ptr<boost::asio::ip::tcp::socket> s, const IPAddr * addr, uint16 port, const IPAddr* localAddr, uint16 localport)
 	: webs(nullptr), s(s), addr(IPAddr::clone(*addr)), port(port), localAddr(IPAddr::clone(*localAddr)), localport(localport), strand(nullptr){}
@@ -1038,7 +1038,7 @@ void TCPServer_Private::onConnectUnshared(std::shared_ptr < boost::beast::websoc
 				if(connectCallBack == nullptr || connectCallBack(index, connetcCallData)){
 					auto buffer = std::shared_ptr<boost::beast::multi_buffer>(new boost::beast::multi_buffer(maxBufferLen));
 					s->binary(true);   // 必须设置为二进制, 才能传输二进制数据
-					s->async_read(*buffer, boost::asio::bind_executor(*clientData->strand, std::bind(&TCPServer_Private::onReceivedUnshared, this, s, index, std::placeholders::_1, std::placeholders::_2, buffer)));
+					s->async_read_some(boost::asio::buffer(buffer.get(), maxBufferLen), boost::asio::bind_executor<boost::asio::executor>(*clientData->strand, std::bind(&TCPServer_Private::onReceivedUnshared, this, s, index, std::placeholders::_1, std::placeholders::_2, buffer)));
 				} else{
 					givenUpClient(index);
 				}
@@ -1073,7 +1073,7 @@ void TCPServer_Private::onReceivedShared(std::shared_ptr<boost::asio::ip::tcp::s
 		}
 	}
 	memset(buffer.get(), 0, maxBufferLen);
-	s->async_read_some(boost::asio::buffer(buffer.get(), maxBufferLen), std::bind(&TCPServer_Private::onReceivedShared, this, s, index, std::placeholders::_1, std::placeholders::_2, buffer));
+	s->async_read_some(boost::asio::buffer(buffer.get(), maxBufferLen), boost::asio::bind_executor<boost::asio::executor>(*client->strand, std::bind(&TCPServer_Private::onReceivedShared, this, s, index, std::placeholders::_1, std::placeholders::_2, buffer)));
 }
 
 void TCPServer_Private::onReceivedUnshared(std::shared_ptr < boost::beast::websocket::stream<boost::asio::ip::tcp::socket>> s, uint32 index, boost::system::error_code err, std::size_t size, std::shared_ptr<boost::beast::multi_buffer> buffer){
@@ -1103,7 +1103,7 @@ void TCPServer_Private::onReceivedUnshared(std::shared_ptr < boost::beast::webso
 	}
 	buffer.reset(new boost::beast::multi_buffer(maxBufferLen));
 	s->binary(true);   // 必须设置为二进制, 才能传输二进制数据
-	s->async_read(*buffer, boost::asio::bind_executor(*client->strand, std::bind(&TCPServer_Private::onReceivedUnshared, this, s, index, std::placeholders::_1, std::placeholders::_2, buffer)));
+	s->async_read_some(boost::asio::buffer(buffer.get(), maxBufferLen), boost::asio::bind_executor<boost::asio::executor>(*client->strand, std::bind(&TCPServer_Private::onReceivedUnshared, this, s, index, std::placeholders::_1, std::placeholders::_2, buffer)));
 }
 
 bool TCPServer_Private::givenUpClient(uint32 index){
@@ -1281,7 +1281,7 @@ void TCPClient_Private::onConnect(Socket::ClientConnectCall asyncConnectCallBack
 		getSocket()->async_read_some(boost::asio::buffer(buffer.get(), maxBufferLen), std::bind(&TCPClient_Private::onReceivedShared, this, asyncConnectCallBack, asyncConnectCallData, std::placeholders::_1, std::placeholders::_2, buffer));
 	} else{
 		auto buffer = std::shared_ptr<boost::beast::multi_buffer>(new boost::beast::multi_buffer(maxBufferLen));
-		getWebSocket()->async_read(*buffer, boost::asio::bind_executor(*strand, std::bind(&TCPClient_Private::onReceivedUnshared, this, asyncConnectCallBack, asyncConnectCallData, std::placeholders::_1, std::placeholders::_2, buffer)));
+		getWebSocket()->async_read_some(boost::asio::buffer(buffer.get(), maxBufferLen), boost::asio::bind_executor<boost::asio::executor>(*strand, std::bind(&TCPClient_Private::onReceivedUnshared, this, asyncConnectCallBack, asyncConnectCallData, std::placeholders::_1, std::placeholders::_2, buffer)));
 	}
 	localServiceThread = std::shared_ptr<std::thread>(new std::thread([this](){
 		boost::system::error_code err;
@@ -1383,7 +1383,7 @@ void TCPClient_Private::onReceivedUnshared(Socket::ClientConnectCall asyncConnec
 		}
 	}
 	buffer = std::shared_ptr<boost::beast::multi_buffer>(new boost::beast::multi_buffer(maxBufferLen));
-	getWebSocket()->async_read(*buffer, boost::asio::bind_executor(*strand, std::bind(&TCPClient_Private::onReceivedUnshared, this, asyncConnectCallBack, asyncConnectCallData, std::placeholders::_1, std::placeholders::_2, buffer)));
+	getWebSocket()->async_read_some(boost::asio::buffer(buffer.get(), maxBufferLen), boost::asio::bind_executor < boost::asio::executor >(*strand, std::bind(&TCPClient_Private::onReceivedUnshared, this, asyncConnectCallBack, asyncConnectCallData, std::placeholders::_1, std::placeholders::_2, buffer)));
 }
 
 UDPSingle_Private::UDPSingle_Private()
@@ -1910,7 +1910,7 @@ TCPWebSocketClient::~TCPWebSocketClient(){
 bool TCPWebSocketClient::connectServer(uint16 port, bool isAsync, ClientConnectCall asyncConnectCallBack, void * asyncConnectCallData){
 	auto hd = static_cast<TCPClient_Private*>(AA_HANDLE_MANAGER[this]);
     auto websocket = std::shared_ptr <boost::beast::websocket::stream<boost::asio::ip::tcp::socket>>(new boost::beast::websocket::stream<boost::asio::ip::tcp::socket>{hd->localService});
-    hd->strand = new boost::asio::strand<boost::asio::executor>(websocket->get_executor());
+    hd->strand = new boost::asio::strand<boost::asio::executor>(*websocket->get_executor().target<boost::asio::executor>());
     auto protocol = hd->addr->getIPVer() == 6 ? boost::asio::ip::tcp::v6() : boost::asio::ip::tcp::v4();
 	return hd->connectServer(isAsync, asyncConnectCallBack, asyncConnectCallData, websocket);
 }
