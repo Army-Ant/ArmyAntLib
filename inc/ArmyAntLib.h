@@ -41,16 +41,16 @@ public:
 	uint32 ver;
 	struct ARMYANTLIB_API VerChar
 	{
-		uint8 bigVer;
-		uint8 smallVer;
-		uint8 patchVer;
-		uint8 testVer;
+		uint8 majorVer;		// 大版本
+		uint8 minorVer;		// 小版本
+		uint8 patchVer;		// 补丁
+		uint8 buildVer;		// 构建
 
-		VerChar(uint8 bigVer, uint8 smallVer, uint8 patchVer, uint8 testVer);
+		VerChar(uint8 majorVer, uint8 minorVer, uint8 patchVer, uint8 buildVer);
 	}sver;
 
 	Version(uint32 ver);
-	Version(uint8 bigVer, uint8 smallVer, uint8 patchVer, uint8 testVer);
+	Version(uint8 majorVer, uint8 minorVer, uint8 patchVer, uint8 buildVer);
 
 public:
 
@@ -70,37 +70,50 @@ public:
 class ARMYANTLIB_API Enviroment
 {
 public:
-	enum class OS : int8
+	enum class OS : int16
 	{
 		// Big class
 		Unix = 0b00000000,
 		Windows = 0b00000001,
+
 		// Medium class
 		// For Unix
-		Linux = 0b00000010,
-		BSD = 0b00000100,
-		Solaris = 0b00000110,
+		Linux = 0b0000000000000100,
+		BSD = 0b0000000000001000,
+		Solaris = 0b0000000000001100,
+		Minix = 0b0000000000010000,
+		OpenServer = 0b0000000000010100,
+		QNX = 0b0000000000011000,
 		// For Windows
-		WindowsPhone = 0b00000011,
-		WindowsServer = 0b00000101,
-		WindowsPC = 0b00000111,
+		WindowsClassic = 0b0000000000000101,
+		WindowsPhone = 0b0000000000001001,
+		WindowsServer = 0b0000000000001101,
+
 		// Small class
 		// For Linux
-		Ubuntu = 0b00001010,
-		Debian = 0b00010010,
-		ChromeOS = 0b00011010,
-		Fedora = 0b00100010,
-		YunOS = 0b00101010,
-		RedHat = 0b00110010,
-		Android = 0b00111010,
-		CentOS = 0b01000010,
-		SuSE = 0b01001010,
-		Oracle = 0b01010010,
-		Deepin = 0b01011010,
+		Ubuntu = 0b0000000000100100,
+		Debian = 0b0000000001000100,
+		ChromeOS = 0b0000000001100100,
+		Fedora = 0b0000000010000100,
+		YunOS = 0b0000000010100100,
+		RedHat = 0b0000000011000100,
+		Android = 0b0000000011100100,
+		CentOS = 0b0000000100000100,
+		OpenSUSE = 0b0000000100100100,
+		Oracle = 0b0000000101000100,
+		Deepin = 0b0000000101100100,
+		ArchLinux = 0b0000000110000100,
+		Gentoo = 0b0000000110100100,
+		Mandriva = 0b0000000111000100,
+		TurboLinux = 0b0000000111100100,
+		Xandros = 0b0000001000000100,
 		// For BSD
-		FreeBSD = 0b00010100,
-		macOS = 0b00001100,
-		iOS = 0b00011100,
+		FreeBSD = 0b0000000000101000,
+		OpenBSD = 0b0000000001001000,
+		NetBSD = 0b0000000001101000,
+		AIX = 0b0000000010001000,
+		macOS = 0b0000000010101000,
+		iOS = 0b0000000011001000,
 	};
 
 	enum class BITS : int8
@@ -130,7 +143,7 @@ public:
 		VisualBasic,
 		Batch,
 		Java,
-		Javascript,
+		JavaScript,
 		PHP,
 		ObjectiveC,
 		CSharp,

@@ -26,13 +26,14 @@
 #include "../../inc/ArmyAntLib.h"
 #include "../../inc/AAString.h"
 #include <boost/random.hpp>
+#include <boost/version.hpp>
 
 namespace ArmyAnt {
 
 namespace Infos {
 
-Version::VerChar::VerChar(uint8 bigVer, uint8 smallVer, uint8 patchVer, uint8 testVer)
-	:bigVer(bigVer), smallVer(smallVer), patchVer(patchVer), testVer(testVer)
+Version::VerChar::VerChar(uint8 majorVer, uint8 minorVer, uint8 patchVer, uint8 buildVer)
+	:majorVer(majorVer), minorVer(minorVer), patchVer(patchVer), buildVer(buildVer)
 {
 }
 
@@ -41,8 +42,8 @@ Version::Version(uint32 ver)
 {
 }
 
-Version::Version(uint8 bigVer, uint8 smallVer, uint8 patchVer, uint8 testVer)
-	: sver(bigVer, smallVer, patchVer, testVer)
+Version::Version(uint8 majorVer, uint8 minorVer, uint8 patchVer, uint8 buildVer)
+	: sver(majorVer, minorVer, patchVer, buildVer)
 {
 }
 
@@ -50,7 +51,7 @@ const Version Version::GetVersion(const char* obj)
 {
 	String objstr = obj;
 	if(objstr == "boost")
-		return Version(1, 59, 0, 0);
+		return Version(BOOST_VERSION / 100000, BOOST_VERSION / 100 % 1000, BOOST_VERSION % 100, 0);
 	else if(objstr == "python")
 		return Version(3, 5, 1, 0);
 	else if(objstr == "")	// Self library's version

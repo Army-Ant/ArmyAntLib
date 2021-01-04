@@ -201,6 +201,11 @@ $RECYCLE.BIN/
 # Microsoft Visual Studio temp files
 .vs
 
+# Microsoft Visual Studio code analyze file
+*.nativecodeanalysis.sarif
+*.nativecodeanalysis.xml
+
+
 # cmake files
 *.cmake
 *cmake-build-*
